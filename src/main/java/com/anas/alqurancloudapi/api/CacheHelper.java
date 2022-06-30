@@ -5,9 +5,10 @@ import java.io.IOException;
 
 public class CacheHelper {
     public static File getCacheFile(String endPoint) throws IOException {
-        var file = new File(endPoint.split("/")[0] + ".json");
+        final var preFix = endPoint.split("/")[0];
+        var file = new File(preFix + ".json");
         while (file.exists()) {
-            file = new File(endPoint + (Math.random() * 10000) + ".json");
+            file = new File(preFix + (int) (Math.random() * 10000) + ".json");
         }
         return file;
     }

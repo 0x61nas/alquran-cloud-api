@@ -8,6 +8,7 @@ import com.anas.alqurancloudapi.quran.Surah;
 import com.anas.alqurancloudapi.quran.edition.Edition;
 import com.anas.alqurancloudapi.quran.edition.EditionFormat;
 import com.anas.alqurancloudapi.quran.edition.EditionType;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
@@ -18,15 +19,16 @@ public class QuranAPI {
     static {
         mapper = new ObjectMapper();
     }
+
     private QuranAPI() {
     }
 
     /**
      * Get all available editions from the Quran for a given language and edition format(text or audio) and edition type.
      *
-     * @param format The format of the edition (text or audio).
+     * @param format   The format of the edition (text or audio).
      * @param language The language of the edition. Must be a 2 character language code, e.g. en, ar, fr, etc.
-     * @param type The type of edition you want to get.
+     * @param type     The type of edition you want to get.
      * @return An array containing all available editions.
      * @throws IOException If an error occurs while communicating with the API.
      */
@@ -49,7 +51,7 @@ public class QuranAPI {
      * Get all editions of a given format and type.
      *
      * @param format The format of the edition (text or audio).
-     * @param type The type of edition you want to get.
+     * @param type   The type of edition you want to get.
      * @return An array containing all available editions.
      * @throws IOException If an error occurs while communicating with the API.
      */
@@ -99,7 +101,7 @@ public class QuranAPI {
      * It takes a surah number and an edition, and returns a Surah object
      *
      * @param surahNumber The number of the surah.
-     * @param edition The edition of the Quran that you want to get the surah from.
+     * @param edition     The edition of the Quran that you want to get the surah from.
      * @return A Surah object.
      */
     public static Surah getSurah(final int surahNumber, final Edition edition) throws IOException {
@@ -118,7 +120,7 @@ public class QuranAPI {
     /**
      * > This function returns a Surah object for the given surah number and edition
      *
-     * @param surahNumber The number of the surah you want to get.
+     * @param surahNumber       The number of the surah you want to get.
      * @param editionIdentifier The identifier of the edition you want to use.
      * @return A Surah object
      */
@@ -169,7 +171,7 @@ public class QuranAPI {
      * It takes an ayah number and an edition (optional) and returns an Ayah object
      *
      * @param ayahNumber The number of the ayah, numbered from 1 to 6348.
-     * @param edition The edition of the Quran that you want to get the ayah from.
+     * @param edition    The edition of the Quran that you want to get the ayah from.
      * @return An Ayah object.
      */
     public static Ayah getAyah(final int ayahNumber, final Edition edition) throws IOException {
@@ -188,7 +190,7 @@ public class QuranAPI {
     /**
      * > This function returns an Ayah object for the given ayah number and edition
      *
-     * @param ayahNumber The ayah number you want to get, numbered from 1 to 6348.
+     * @param ayahNumber        The ayah number you want to get, numbered from 1 to 6348.
      * @param editionIdentifier The identifier of the edition you want to use.
      * @return An Ayah object.
      */
@@ -240,7 +242,7 @@ public class QuranAPI {
      * It returns a `Page` object that contains the information of the page number that was passed as an argument
      *
      * @param pageNumber The page number of the Quran.
-     * @param edition The edition of the Quran you want to get the page from.
+     * @param edition    The edition of the Quran you want to get the page from.
      * @return A Page object.
      */
     public static Page getPage(final int pageNumber, final Edition edition) throws IOException {
@@ -269,7 +271,7 @@ public class QuranAPI {
     /**
      * "This function returns a Page object for the given page number and edition."
      *
-     * @param pageNumber The page number of the page you want to get.
+     * @param pageNumber        The page number of the page you want to get.
      * @param editionIdentifier The identifier of the edition you want to get the page from.
      * @return A Page object
      */
@@ -280,4 +282,65 @@ public class QuranAPI {
     /*public static Page getRandomPage(final Edition edition) throws IOException {
         return getPage((int) (Math.random() * edition.getPagesNumber()), edition);
     }*/
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    private static class SearchResult {
+        public Ayah[] matches;
+
+        public SearchResult() {
+            matches = null;
+        }
+
+        public Ayah[] getMatches() {
+            return matches;
+        }
+    }
+    public static Ayah[] search(final String keyword,
+                                final int surahNumber,
+                                final Edition edition) throws IOException {
+        if (keyword == null || keyword.isEmpty()) {
+            throw new IllegalArgumentException("Keyword cannot be null or empty");
+        }
+
+
+        final var jsonFile = Requester.sendRequest("search/" + keyword + "/" +
+                (surahNumber - 1 > -1 ? surahNumber : "all") + "/" +
+                (edition != null ? "/" + edition.getIdentifier() : "en"));
+        final var o = mapper.readValue(jsonFile, SearchResult.class);
+        // It deletes the temporary file that was created by the `Requester` class.
+        jsonFile.delete();
+        return o.matches;
+    }
+
+    public static Ayah[] search(final String keyword,
+                                final Surah surah,
+                                final Edition edition) throws IOException {
+        return search(keyword, surah.getNumber(), edition);
+    }
+    public static Ayah[] search(final String keyword,
+                                final int surahNumber) throws IOException {
+        return search(keyword, surahNumber, (Edition) null);
+    }
+    public static Ayah[] search(final String keyword,
+                                final Surah surah) throws IOException {
+        return search(keyword, surah.getNumber());
+    }
+
+    public static Ayah[] search(final String keyword) throws IOException {
+        return search(keyword, -1);
+    }
+
+    public static Ayah[] search(final String keyword,
+                                final int surahNumber,
+                                final String editionIdentifier) throws IOException {
+        return search(keyword, surahNumber, new Edition(editionIdentifier));
+    }
+
+    public static Ayah[] search(final String keyword,
+                                final Surah surah,
+                                final String editionIdentifier) throws IOException {
+        return search(keyword, surah.getNumber(), new Edition(editionIdentifier));
+    }
+
+
+
 }

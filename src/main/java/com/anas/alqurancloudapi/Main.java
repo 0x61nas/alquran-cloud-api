@@ -14,14 +14,16 @@ public class Main {
 
         System.out.println("\n\n");
 
-        System.out.println(QuranAPI.getSurah(1, "ar.alafasy"));
+//        System.out.println(QuranAPI.getSurah(1, "ar.alafasy"));
 
         System.out.println("\n\n");
 
         // System.out.println(QuranAPI.getRandomAyah());
 
-        System.out.println("\n\n");
+//        System.out.println("\n\n");
 
         // System.out.println(Arrays.toString(QuranAPI.getEditions()));
+
+        System.out.println(Arrays.toString(QuranAPI.search("Abraham")));
     }
 }
