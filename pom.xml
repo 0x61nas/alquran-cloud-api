@@ -7,6 +7,23 @@
 	<groupId>com.anas.alqurancloudapi</groupId>
 	<artifactId>alquran-cloud-api</artifactId>
 	<version>0.0.1-v1</version>
+	<packaging>jar</packaging>
+
+	<name>alquran-cloud-api</name>
+	<description>A simple java wrapper library for alquran-cloud-api</description>
+	<url>https://github.com/anas-elgarhy/alquran-cloud-api</url>
+
+	<licenses>
+		<license>
+			<name>GNU Lesser General Public License v3.0</name>
+			<url>https://www.gnu.org/licenses/lgpl-3.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<scm>
+		<url>https://svn.apache.org/viewvc/maven</url>
+	</scm>
 
 	<dependencies>
 		<dependency>
@@ -16,9 +33,22 @@
 		</dependency>
 	</dependencies>
 
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.2</version>
+				<configuration>
+					<source>8</source>
+					<target>8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
 	<properties>
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
 	</properties>
-
 </project>
