@@ -10,7 +10,7 @@
 	<packaging>jar</packaging>
 
 	<name>alquran-cloud-api</name>
-	<description>A simple java wrapper library for alquran-cloud-api</description>
+	<description>A simple java wrapper library for alquran-cloud api</description>
 	<url>https://github.com/anas-elgarhy/alquran-cloud-api</url>
 
 	<licenses>

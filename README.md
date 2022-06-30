@@ -1,4 +1,4 @@
-# A simple java wrapper library for [alquran-cloud-api](https://alquran.cloud/api) 🤍
+# A simple java wrapper library for [alquran-cloud api](https://alquran.cloud/api) 🤍
 
 ## It still under development 🚧
 
