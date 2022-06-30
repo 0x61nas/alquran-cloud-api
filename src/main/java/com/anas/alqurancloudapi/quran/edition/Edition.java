@@ -15,8 +15,12 @@ public class Edition {
     }
 
     protected Edition() {
+        this("Unknown");
+    }
+
+    public Edition(final String identifier) {
+        this.identifier = identifier;
         this.name = "Unknown";
-        this.identifier = "Unknown";
         this.language = "Unknown";
         this.englishName = "Unknown";
         this.format = EditionFormat.values()[0];
@@ -50,5 +54,12 @@ public class Edition {
 
     public Direction getDirection() {
         return direction;
+    }
+
+    @Override
+    public String toString() {
+        return "Edition{" + "name=" + name + ", identifier=" + identifier + ", language=" + language
+                + ", englishName=" + englishName + ", format=" + format + ", type=" + type + ", direction=" + direction
+                + '}';
     }
 }

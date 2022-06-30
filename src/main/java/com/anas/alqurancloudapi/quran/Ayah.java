@@ -74,4 +74,21 @@ public class Ayah {
     public boolean isSajdah() {
         return sajdah;
     }
+
+    @Override
+    public String toString() {
+        return "Ayah{" +
+                "number=" + number +
+                ", text='" + text + '\'' +
+                ", edition=" + edition +
+                ", surah=" + surah +
+                ", numberOfSurah=" + numberOfSurah +
+                ", juz=" + juz +
+                ", manzil=" + manzil +
+                ", page=" + page +
+                ", ruku=" + ruku +
+                ", hizbQuarter=" + hizbQuarter +
+                ", sajdah=" + sajdah +
+                '}';
+    }
 }

@@ -8,7 +8,7 @@ public class Constants {
     /**
      * The constant representing the number of all ayahs in the Quran including the bismillah.
      */
-    public static final int AYAS_COUNT_WITH_BISMILLAH = AYAS_COUNT + 112;
+    public static final int AYAHS_COUNT_WITH_BISMILLAH = AYAS_COUNT + 112;
     /**
      * The constant representing the number of surahs in the Quran.
      */
