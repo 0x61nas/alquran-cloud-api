@@ -3,6 +3,7 @@ package com.anas.alqurancloudapi;
 import com.anas.alqurancloudapi.api.Requester;
 import com.anas.alqurancloudapi.quran.Ayah;
 import com.anas.alqurancloudapi.quran.Constants;
+import com.anas.alqurancloudapi.quran.Page;
 import com.anas.alqurancloudapi.quran.Surah;
 import com.anas.alqurancloudapi.quran.edition.Edition;
 import com.anas.alqurancloudapi.quran.edition.EditionFormat;
@@ -233,4 +234,50 @@ public class QuranAPI {
     public static Ayah getRandomAyah() throws IOException {
         return getRandomAyah((Edition) null);
     }
+
+
+    /**
+     * It returns a `Page` object that contains the information of the page number that was passed as an argument
+     *
+     * @param pageNumber The page number of the Quran.
+     * @param edition The edition of the Quran you want to get the page from.
+     * @return A Page object.
+     */
+    public static Page getPage(final int pageNumber, final Edition edition) throws IOException {
+        // Checking if the surah number is valid.
+        if (pageNumber < 1) {
+            throw new IllegalArgumentException("Page number must be greater than 0");
+        }
+        final var jsonFile = Requester.sendRequest("page/" + pageNumber
+                + (edition != null ? "/" + edition.getIdentifier() : ""));
+        final var o = mapper.readValue(jsonFile, Page.class);
+        // It deletes the temporary file that was created by the `Requester` class.
+        jsonFile.delete();
+        return o;   // Page object
+    }
+
+    /**
+     * This function returns a page from the Quran for the given page number and arabic edition
+     *
+     * @param pageNumber The page number of the page you want to get.
+     * @return A Page object
+     */
+    public static Page getPage(final int pageNumber) throws IOException {
+        return getPage(pageNumber, (Edition) null);
+    }
+
+    /**
+     * "This function returns a Page object for the given page number and edition."
+     *
+     * @param pageNumber The page number of the page you want to get.
+     * @param editionIdentifier The identifier of the edition you want to get the page from.
+     * @return A Page object
+     */
+    public static Page getPage(final int pageNumber, final String editionIdentifier) throws IOException {
+        return getPage(pageNumber, new Edition(editionIdentifier));
+    }
+
+    /*public static Page getRandomPage(final Edition edition) throws IOException {
+        return getPage((int) (Math.random() * edition.getPagesNumber()), edition);
+    }*/
 }
