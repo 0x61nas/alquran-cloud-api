@@ -12,16 +12,12 @@ public class Surah {
     private final String englishNameTranslation;
     private final RevelationType revelationType;
     private final Ayah[] ayahs;
-    public static final Surah Unknown;
 
-    static {
-        Unknown = new Surah();
-    }
     private Surah() {
         this.number = 0;
-        this.name = "Unknown";
-        this.englishName = "Unknown";
-        this.englishNameTranslation = "Unknown";
+        this.name = null;
+        this.englishName = null;
+        this.englishNameTranslation = null;
         this.revelationType = RevelationType.values()[0];
         this.ayahs = new Ayah[0];
     }

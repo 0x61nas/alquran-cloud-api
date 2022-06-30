@@ -8,21 +8,16 @@ public class Edition {
     private final EditionFormat format;
     private final EditionType type;
     private final Direction direction;
-    public final static Edition Unknown;
-
-    static {
-        Unknown = new Edition();
-    }
 
     protected Edition() {
-        this("Unknown");
+        this(null);
     }
 
     public Edition(final String identifier) {
         this.identifier = identifier;
-        this.name = "Unknown";
-        this.language = "Unknown";
-        this.englishName = "Unknown";
+        this.name = null;
+        this.language = null;
+        this.englishName = null;
         this.format = EditionFormat.values()[0];
         this.type = EditionType.values()[0];
         this.direction = Direction.values()[0];

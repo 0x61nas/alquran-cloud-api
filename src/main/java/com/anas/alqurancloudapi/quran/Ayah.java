@@ -2,14 +2,21 @@ package com.anas.alqurancloudapi.quran;
 
 import com.anas.alqurancloudapi.quran.edition.Edition;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.Arrays;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Ayah {
     private final short number;
     private final String text;
+    @JsonProperty("audio")
+    private final String audioUrl;
+    @JsonProperty("audioSecondary")
+    private final String[] secondaryAudioUrls;
     private final Edition edition;
     private final Surah surah;
-    private final short numberOfSurah;
+    private final short numberInSurah;
     private final short juz;
     private final short manzil;
     private final short page;
@@ -19,10 +26,12 @@ public class Ayah {
 
     private Ayah() {
         this.number = 0;
-        this.text = "";
-        this.edition = Edition.Unknown;
-        this.surah = Surah.Unknown;
-        this.numberOfSurah = 0;
+        this.text = null;
+        this.audioUrl = null;
+        this.secondaryAudioUrls = null;
+        this.edition = null;
+        this.surah = null;
+        this.numberInSurah = 0;
         this.juz = 0;
         this.manzil = 0;
         this.page = 0;
@@ -43,12 +52,20 @@ public class Ayah {
         return edition;
     }
 
+    public String getAudioUrl() {
+        return audioUrl;
+    }
+
+    public String[] getSecondaryAudioUrls() {
+        return secondaryAudioUrls;
+    }
+
     public Surah getSurah() {
         return surah;
     }
 
-    public short getNumberOfSurah() {
-        return numberOfSurah;
+    public short getNumberInSurah() {
+        return numberInSurah;
     }
 
     public short getJuz() {
@@ -80,9 +97,11 @@ public class Ayah {
         return "Ayah{" +
                 "number=" + number +
                 ", text='" + text + '\'' +
+                ", audioUrl='" + audioUrl + '\'' +
+                ", secondaryAudioUrls=" + Arrays.toString(secondaryAudioUrls) +
                 ", edition=" + edition +
                 ", surah=" + surah +
-                ", numberOfSurah=" + numberOfSurah +
+                ", numberOfSurah=" + numberInSurah +
                 ", juz=" + juz +
                 ", manzil=" + manzil +
                 ", page=" + page +
