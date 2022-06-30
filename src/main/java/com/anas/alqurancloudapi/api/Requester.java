@@ -47,9 +47,4 @@ public class Requester {
     public static String getBaseUrl() {
         return BASE_URL;
     }
-
-    public static void main(String[] args) throws IOException {
-        System.out.println(Requester.sendRequest("ayah/8"));
-    }
-
 }
