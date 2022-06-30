@@ -61,7 +61,7 @@ public class QuranAPI {
     }
 
     /**
-     * Get all editions of a given format and type.
+     * Get all editions of a given format.
      *
      * @param format The format of the edition (text or audio).
      * @return An array containing all available editions.
@@ -93,6 +93,11 @@ public class QuranAPI {
         return getEditions(null, type);
     }
 
+    /**
+     * This function returns an array of all available editions.
+     *
+     * @return An array of Edition objects.
+     */
     public static Edition[] getEditions() throws IOException {
         return getEditions((EditionType) null);
     }
@@ -129,7 +134,7 @@ public class QuranAPI {
     }
 
     /**
-     * > This function returns a Surah object for the given surah number and edition
+     * > This function returns a Surah object for the given surah number in arabic edition.
      *
      * @param surahNumber The number of the surah you want to get.
      * @return A Surah object
@@ -159,7 +164,7 @@ public class QuranAPI {
     }
 
     /**
-     * > This function returns a random surah from the Quran
+     * > This function returns a random surah from the Quran in arabic edition
      *
      * @return A random surah from the Quran.
      */
@@ -340,7 +345,4 @@ public class QuranAPI {
                                 final String editionIdentifier) throws IOException {
         return search(keyword, surah.getNumber(), new Edition(editionIdentifier));
     }
-
-
-
 }
