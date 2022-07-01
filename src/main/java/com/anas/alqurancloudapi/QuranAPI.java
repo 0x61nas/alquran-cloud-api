@@ -169,7 +169,7 @@ public class QuranAPI {
 
     /**
      * It returns a random edition from the list of all available editions with a given language.
-     *
+     *:"""
      * @param language The language of the edition you want to get (2 character language code, e.g. en, ar, fr, etc.).
      * @return A random edition from the list of all editions.
      */
@@ -192,6 +192,7 @@ public class QuranAPI {
      * @param surahNumber The number of the surah.
      * @param edition     The edition of the Quran that you want to get the surah from.
      * @return A Surah object.
+     * @throws IOException If an error occurs while communicating with the API.
      */
     public static Surah getSurah(final int surahNumber, final Edition edition) throws IOException {
         // Checking if the surah number is valid.
@@ -212,6 +213,7 @@ public class QuranAPI {
      * @param surahNumber       The number of the surah you want to get.
      * @param editionIdentifier The identifier of the edition you want to use.
      * @return A Surah object
+     * @throws IOException If an error occurs while communicating with the API.
      */
     public static Surah getSurah(final int surahNumber, final String editionIdentifier) throws IOException {
         return getSurah(surahNumber, new Edition(editionIdentifier));
@@ -222,6 +224,7 @@ public class QuranAPI {
      *
      * @param surahNumber The number of the surah you want to get.
      * @return A Surah object
+     * @throws IOException If an error occurs while communicating with the API.
      */
     public static Surah getSurah(final int surahNumber) throws IOException {
         return getSurah(surahNumber, (Edition) null);
@@ -232,6 +235,7 @@ public class QuranAPI {
      *
      * @param edition The edition of the Quran you want to get the surah from.
      * @return A random surah from the Quran.
+     * @throws IOException If an error occurs while communicating with the API.
      */
     public static Surah getRandomSurah(final Edition edition) throws IOException {
         return getSurah((int) (Math.random() * Constants.SURAS_COUNT), edition);
@@ -242,6 +246,7 @@ public class QuranAPI {
      *
      * @param editionIdentifier The identifier of the edition you want to use.
      * @return A Surah object
+     * @throws IOException If an error occurs while communicating with the API.
      */
     public static Surah getRandomSurah(final String editionIdentifier) throws IOException {
         return getRandomSurah(new Edition(editionIdentifier));
@@ -251,6 +256,7 @@ public class QuranAPI {
      * This function returns a random surah from the Quran in arabic edition
      *
      * @return A random surah from the Quran.
+     * @throws IOException If an error occurs while communicating with the API.
      */
     public static Surah getRandomSurah() throws IOException {
         return getRandomSurah((Edition) null);
@@ -262,6 +268,7 @@ public class QuranAPI {
      * @param ayahNumber The number of the ayah, numbered from 1 to 6348.
      * @param edition    The edition of the Quran that you want to get the ayah from.
      * @return An Ayah object.
+     * @throws IOException If an error occurs while communicating with the API.
      */
     public static Ayah getAyah(final int ayahNumber, final Edition edition) throws IOException {
         // Checking if the surah number is valid.
@@ -282,6 +289,7 @@ public class QuranAPI {
      * @param ayahNumber        The ayah number you want to get, numbered from 1 to 6348.
      * @param editionIdentifier The identifier of the edition you want to use.
      * @return An Ayah object.
+     * @throws IOException If an error occurs while communicating with the API.
      */
     public static Ayah getAyah(final int ayahNumber, final String editionIdentifier) throws IOException {
         return getAyah(ayahNumber, new Edition(editionIdentifier));
@@ -292,6 +300,7 @@ public class QuranAPI {
      *
      * @param ayahNumber The ayah number you want to get, numbered from 1 to 6348.
      * @return An Ayah object
+     * @throws IOException If an error occurs while communicating with the API.
      */
     public static Ayah getAyah(final int ayahNumber) throws IOException {
         return getAyah(ayahNumber, (Edition) null);
@@ -302,6 +311,7 @@ public class QuranAPI {
      *
      * @param edition The edition of the Quran you want to get the ayah from.
      * @return A random ayah from the Quran.
+     * @throws IOException If an error occurs while communicating with the API.
      */
     public static Ayah getRandomAyah(final Edition edition) throws IOException {
         return getAyah((int) (Math.random() * Constants.AYAHS_COUNT_WITH_BISMILLAH), edition);
@@ -312,6 +322,7 @@ public class QuranAPI {
      *
      * @param editionIdentifier The identifier of the edition you want to use.
      * @return A random ayah from the Quran.
+     * @throws IOException If an error occurs while communicating with the API.
      */
     public static Ayah getRandomAyah(final String editionIdentifier) throws IOException {
         return getRandomAyah(new Edition(editionIdentifier));
@@ -321,6 +332,7 @@ public class QuranAPI {
      * This function returns a random Ayah from the Quran
      *
      * @return A random ayah from the Quran.
+     * @throws IOException If an error occurs while communicating with the API.
      */
     public static Ayah getRandomAyah() throws IOException {
         return getRandomAyah((Edition) null);
@@ -333,6 +345,7 @@ public class QuranAPI {
      * @param pageNumber The page number of the Quran.
      * @param edition    The edition of the Quran you want to get the page from.
      * @return A Page object.
+     * @throws IOException If an error occurs while communicating with the API.
      */
     public static Page getPage(final int pageNumber, final Edition edition) throws IOException {
         // Checking if the surah number is valid.
@@ -352,6 +365,7 @@ public class QuranAPI {
      *
      * @param pageNumber The page number of the page you want to get.
      * @return A Page object
+     * @throws IOException If an error occurs while communicating with the API.
      */
     public static Page getPage(final int pageNumber) throws IOException {
         return getPage(pageNumber, (Edition) null);
@@ -363,6 +377,7 @@ public class QuranAPI {
      * @param pageNumber        The page number of the page you want to get.
      * @param editionIdentifier The identifier of the edition you want to get the page from.
      * @return A Page object
+     * @throws IOException If an error occurs while communicating with the API.
      */
     public static Page getPage(final int pageNumber, final String editionIdentifier) throws IOException {
         return getPage(pageNumber, new Edition(editionIdentifier));
