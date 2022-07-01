@@ -321,10 +321,12 @@ public class QuranAPI {
                                 final Edition edition) throws IOException {
         return search(keyword, surah.getNumber(), edition);
     }
+
     public static Ayah[] search(final String keyword,
                                 final int surahNumber) throws IOException {
         return search(keyword, surahNumber, (Edition) null);
     }
+
     public static Ayah[] search(final String keyword,
                                 final Surah surah) throws IOException {
         return search(keyword, surah.getNumber());
