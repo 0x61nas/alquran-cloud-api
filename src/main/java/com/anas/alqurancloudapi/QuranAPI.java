@@ -287,6 +287,7 @@ public class QuranAPI {
     /*public static Page getRandomPage(final Edition edition) throws IOException {
         return getPage((int) (Math.random() * edition.getPagesNumber()), edition);
     }*/
+
     @JsonIgnoreProperties(ignoreUnknown = true)
     private static class SearchResult {
         public Ayah[] matches;
@@ -299,15 +300,24 @@ public class QuranAPI {
             return matches;
         }
     }
+    /**
+     * Search for a word or phrase in the Quran in the specific edition and specific surah.
+     *
+     * @param keyword The keyword or phrase you want to search for.
+     * @param surahNumber The surah number to search in. If you want to search in all surahs, set this to -1.
+     * @param edition The edition of the Quran you want to search in, default is english edition.
+     * @return An array of Ayah objects.
+     * @throws IOException If there is an error while connecting to the server or if the server returns an error, or can't create the temporary file.
+     */
     public static Ayah[] search(final String keyword,
                                 final int surahNumber,
                                 final Edition edition) throws IOException {
+        // Checking if the keyword is null or empty.
         if (keyword == null || keyword.isEmpty()) {
             throw new IllegalArgumentException("Keyword cannot be null or empty");
         }
-
-
-        final var jsonFile = Requester.sendRequest("search/" + keyword + "/" +
+        final var jsonFile = Requester.sendRequest("search/" +
+                keyword.replace(" ", "%20") + "/" +
                 (surahNumber - 1 > -1 ? surahNumber : "all") + "/" +
                 (edition != null ? "/" + edition.getIdentifier() : "en"));
         final var o = mapper.readValue(jsonFile, SearchResult.class);
@@ -316,32 +326,82 @@ public class QuranAPI {
         return o.matches;
     }
 
+    /**
+     * > Search for a keyword or phrase in the Quran in the specific edition and specific surah.
+     *
+     * @param keyword The keyword or phrase you want to search for.
+     * @param surah The surah number you want to search in.
+     * @param edition The edition of the Quran you want to search in.
+     * @return An array of Ayah objects.
+     * @throws IOException If there is an error while connecting to the server or if the server returns an error, or can't create the temporary file.
+     */
     public static Ayah[] search(final String keyword,
                                 final Surah surah,
                                 final Edition edition) throws IOException {
         return search(keyword, surah.getNumber(), edition);
     }
 
+    /**
+     * > Search for a keyword in a specific surah
+     *
+     * @param keyword The keyword to search for.
+     * @param surahNumber The surah number to search in.
+     * @return An array of Ayah objects.
+     * @throws IOException If there is an error while connecting to the server or if the server returns an error, or can't create the temporary file.
+     */
     public static Ayah[] search(final String keyword,
                                 final int surahNumber) throws IOException {
         return search(keyword, surahNumber, (Edition) null);
     }
 
+    /**
+     * > Search for a keyword in a specific surah
+     *
+     * @param keyword The keyword to search for.
+     * @param surah The surah you want to search in.
+     * @return An array of Ayah objects.
+     * @throws IOException If there is an error while connecting to the server or if the server returns an error, or can't create the temporary file.
+     */
     public static Ayah[] search(final String keyword,
                                 final Surah surah) throws IOException {
         return search(keyword, surah.getNumber());
     }
 
+    /**
+     * > This function searches the in the Quran for a keyword or phrase in english edition.
+     *
+     * @param keyword The keyword to search for.
+     * @return An array of Ayah objects.
+     * @throws IOException If there is an error while connecting to the server or if the server returns an error, or can't create the temporary file.
+     */
     public static Ayah[] search(final String keyword) throws IOException {
         return search(keyword, -1);
     }
 
+    /**
+     * > Search for a keyword in a specific surah of a specific edition
+     *
+     * @param keyword The keyword to search for.
+     * @param surahNumber The surah number to search in. If you want to search in all surahs, pass in 0.
+     * @param editionIdentifier The identifier of the edition you want to search in.
+     * @return An array of Ayah objects.
+     * @throws IOException If there is an error while connecting to the server or if the server returns an error, or can't create the temporary file.
+     */
     public static Ayah[] search(final String keyword,
                                 final int surahNumber,
                                 final String editionIdentifier) throws IOException {
         return search(keyword, surahNumber, new Edition(editionIdentifier));
     }
 
+    /**
+     * > Search for a keyword in a specific surah of a specific edition
+     *
+     * @param keyword The keyword to search for.
+     * @param surah The surah you want to search in.
+     * @param editionIdentifier The identifier of the edition you want to search in.
+     * @return An array of Ayah objects.
+     * @throws IOException If there is an error while connecting to the server or if the server returns an error, or can't create the temporary file.
+     */
     public static Ayah[] search(final String keyword,
                                 final Surah surah,
                                 final String editionIdentifier) throws IOException {
