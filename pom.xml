@@ -15,9 +15,9 @@
 
 	<distributionManagement>
 		<repository>
-			<id>internal.repo</id>
-			<name>Temporary Staging Repository</name>
-			<url>file://${project.build.directory}/mvn-artifact</url>
+			<id>github</id>
+			<name>GitHub Anas Elgarhy Apache Maven Packages</name>
+			<url>https://maven.pkg.github.com/${repository-owner}/${repository-name}</url>
 		</repository>
 	</distributionManagement>
 
@@ -86,11 +86,12 @@
 			<plugin>
 				<artifactId>maven-deploy-plugin</artifactId>
 				<version>2.8.2</version>
-				<configuration>
-					<altDeploymentRepository>
-						internal.repo::default::file://${project.build.directory}/mvn-artifact
-					</altDeploymentRepository>
-				</configuration>
+<!--				<configuration>-->
+<!--					<altDeploymentRepository>-->
+<!--						internal.repo::default::file://${project.build.directory}/mvn-artifact-->
+<!--						online.repo::default::https://maven.pkg.github.com/${repository-owner}/${repository-name}-->
+<!--					</altDeploymentRepository>-->
+<!--				</configuration>-->
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
