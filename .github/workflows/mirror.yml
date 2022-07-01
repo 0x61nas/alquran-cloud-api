@@ -1,0 +1,39 @@
+# This is a basic workflow that is manually triggered
+name: Mirror repo
+on: [push]
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+       - name: mirror in gitlab
+         uses: actions/checkout@v3
+         with:
+          fetch-depth: 0
+       - uses: yesolutions/mirror-action@master
+         with:
+            REMOTE: 'https://gitlab.com/anas-elgarhy/alquran-cloud-api.git'
+            GIT_USERNAME: Anas-Elgarhy
+            GIT_PASSWORD: ${{ secrets.GITLAP_TOKEN }}
+
+       - name: mirror in bitbucket
+         uses: actions/checkout@v3
+         with:
+          fetch-depth: 0
+       - uses: yesolutions/mirror-action@master
+         with:
+            REMOTE: 'https://anas-elgarhy@bitbucket.org/anas_elgarhy/alquran-cloud-api.git'
+            REMOTE_NAME: bitbucket
+            GIT_USERNAME: anas_elgarhy
+            GIT_PASSWORD: ${{ secrets.BITBUCKET_TOKEN }}
+
+       - name: mirror in codeberg
+         uses: actions/checkout@v3
+         with:
+          fetch-depth: 0
+       - uses: yesolutions/mirror-action@master
+         with:
+            REMOTE: 'https://codeberg.org/anas-elgarhy/alquran-cloud-api.git'
+            REMOTE_NAME: codeberg
+            GIT_USERNAME: anas-elgarhy
+            GIT_PASSWORD: ${{ secrets.CODEBERG_TOKEN }}
