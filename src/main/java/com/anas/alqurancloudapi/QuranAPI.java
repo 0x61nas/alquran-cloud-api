@@ -123,7 +123,7 @@ public class QuranAPI {
     }
 
     /**
-     * > This function returns a Surah object for the given surah number and edition
+     * This function returns a Surah object for the given surah number and edition
      *
      * @param surahNumber       The number of the surah you want to get.
      * @param editionIdentifier The identifier of the edition you want to use.
@@ -134,7 +134,7 @@ public class QuranAPI {
     }
 
     /**
-     * > This function returns a Surah object for the given surah number in arabic edition.
+     * This function returns a Surah object for the given surah number in arabic edition.
      *
      * @param surahNumber The number of the surah you want to get.
      * @return A Surah object
@@ -144,7 +144,7 @@ public class QuranAPI {
     }
 
     /**
-     * > Get a random surah from the Quran
+     * Get a random surah from the Quran
      *
      * @param edition The edition of the Quran you want to get the surah from.
      * @return A random surah from the Quran.
@@ -154,7 +154,7 @@ public class QuranAPI {
     }
 
     /**
-     * > This function returns a random surah from the Quran
+     * This function returns a random surah from the Quran
      *
      * @param editionIdentifier The identifier of the edition you want to use.
      * @return A Surah object
@@ -164,7 +164,7 @@ public class QuranAPI {
     }
 
     /**
-     * > This function returns a random surah from the Quran in arabic edition
+     * This function returns a random surah from the Quran in arabic edition
      *
      * @return A random surah from the Quran.
      */
@@ -193,7 +193,7 @@ public class QuranAPI {
     }
 
     /**
-     * > This function returns an Ayah object for the given ayah number and edition
+     * This function returns an Ayah object for the given ayah number and edition
      *
      * @param ayahNumber        The ayah number you want to get, numbered from 1 to 6348.
      * @param editionIdentifier The identifier of the edition you want to use.
@@ -204,7 +204,7 @@ public class QuranAPI {
     }
 
     /**
-     * > This function returns an Ayah object for the given ayah number
+     * This function returns an Ayah object for the given ayah number
      *
      * @param ayahNumber The ayah number you want to get, numbered from 1 to 6348.
      * @return An Ayah object
@@ -214,7 +214,7 @@ public class QuranAPI {
     }
 
     /**
-     * > Get a random ayah from the Quran
+     * Get a random ayah from the Quran
      *
      * @param edition The edition of the Quran you want to get the ayah from.
      * @return A random ayah from the Quran.
@@ -224,7 +224,7 @@ public class QuranAPI {
     }
 
     /**
-     * > This function returns a random Ayah from the Quran
+     * This function returns a random Ayah from the Quran
      *
      * @param editionIdentifier The identifier of the edition you want to use.
      * @return A random ayah from the Quran.
@@ -234,7 +234,7 @@ public class QuranAPI {
     }
 
     /**
-     * > This function returns a random Ayah from the Quran
+     * This function returns a random Ayah from the Quran
      *
      * @return A random ayah from the Quran.
      */
@@ -327,7 +327,7 @@ public class QuranAPI {
     }
 
     /**
-     * > Search for a keyword or phrase in the Quran in the specific edition and specific surah.
+     * Search for a keyword or phrase in the Quran in the specific edition and specific surah.
      *
      * @param keyword The keyword or phrase you want to search for.
      * @param surah The surah number you want to search in.
@@ -342,7 +342,7 @@ public class QuranAPI {
     }
 
     /**
-     * > Search for a keyword in a specific surah
+     * Search for a keyword in a specific surah
      *
      * @param keyword The keyword to search for.
      * @param surahNumber The surah number to search in.
@@ -355,7 +355,7 @@ public class QuranAPI {
     }
 
     /**
-     * > Search for a keyword in a specific surah
+     * Search for a keyword in a specific surah
      *
      * @param keyword The keyword to search for.
      * @param surah The surah you want to search in.
@@ -368,7 +368,7 @@ public class QuranAPI {
     }
 
     /**
-     * > This function searches the in the Quran for a keyword or phrase in english edition.
+     * This function searches the in the Quran for a keyword or phrase in english edition.
      *
      * @param keyword The keyword to search for.
      * @return An array of Ayah objects.
@@ -379,7 +379,7 @@ public class QuranAPI {
     }
 
     /**
-     * > Search for a keyword in a specific surah of a specific edition
+     * Search for a keyword in a specific surah of a specific edition
      *
      * @param keyword The keyword to search for.
      * @param surahNumber The surah number to search in. If you want to search in all surahs, pass in 0.
@@ -394,7 +394,7 @@ public class QuranAPI {
     }
 
     /**
-     * > Search for a keyword in a specific surah of a specific edition
+     * Search for a keyword in a specific surah of a specific edition
      *
      * @param keyword The keyword to search for.
      * @param surah The surah you want to search in.

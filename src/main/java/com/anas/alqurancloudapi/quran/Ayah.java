@@ -83,6 +83,7 @@ public class Ayah {
 
     /**
      * This function returns the secondary audio URLs array of the ayah, null if there is no audio.
+     * Secondary audio URLs are used for the audio of the ayah in the different resolutions (128, 64).
      *
      * @return The secondary audio URLs array of the ayah, null if there is no audio.
      */
