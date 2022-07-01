@@ -38,10 +38,10 @@ public class QuranAPI {
         if (language != null && (language.length() != 2)) {
             throw new IllegalArgumentException("Language must be 2 characters long");
         }
-        final var jsonFile = Requester.sendRequest("/edition" +
+        final var jsonFile = Requester.sendRequest("edition" +
                 (format != null ? "?format=" + format.name().toLowerCase() : "") +
-                (type != null ? "?type=" + type.name().toLowerCase() : "") +
-                (language != null ? "?language=" + language : ""));
+                (type != null ? (format != null ? "&" : "?") + "type=" + type.name().toLowerCase() : "") +
+                (language != null ?  (format != null || type != null ? "&" : "?") +"language=" + language : ""));
         final var editions = mapper.readValue(jsonFile, Edition[].class);
         jsonFile.delete();
         return editions;
