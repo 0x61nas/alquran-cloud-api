@@ -102,6 +102,11 @@ public class QuranAPI {
         return getEditions((EditionType) null);
     }
 
+    /**
+     * It returns an array of all available languages.
+     *
+     * @return An array of strings containing all the languages of the editions.
+     */
     public static String[] getAllEditionsLanguages() throws IOException {
         final var jsonFile = Requester.sendRequest("edition/language");
         final var languages = mapper.readValue(jsonFile, String[].class);
