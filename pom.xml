@@ -6,7 +6,7 @@
 
 	<groupId>com.anas.alqurancloudapi</groupId>
 	<artifactId>alquran-cloud-api</artifactId>
-	<version>0.1.1-v1</version>
+	<version>0.1.2-v1</version>
 	<packaging>jar</packaging>
 
 	<name>alquran-cloud-api</name>
@@ -108,6 +108,16 @@
 			</plugin>
 		</plugins>
 		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>10</source>
+					<target>10</target>
+				</configuration>
+			</plugin>
+		</plugins>
 	</build>
 
 	<repositories>
