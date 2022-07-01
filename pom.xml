@@ -13,6 +13,14 @@
 	<description>A simple java wrapper library for alquran-cloud api</description>
 	<url>https://github.com/anas-elgarhy/alquran-cloud-api</url>
 
+	<distributionManagement>
+		<repository>
+			<id>internal.repo</id>
+			<name>Temporary Staging Repository</name>
+			<url>file://${project.build.directory}/mvn-artifact</url>
+		</repository>
+	</distributionManagement>
+
 	<licenses>
 		<license>
 			<name>GNU Lesser General Public License v3.0</name>
@@ -34,20 +42,89 @@
 	</dependencies>
 
 	<build>
+		<pluginManagement>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.2</version>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>3.1.0</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>com.github.github</groupId>
+				<artifactId>site-maven-plugin</artifactId>
+				<version>0.12</version>
 				<configuration>
-					<source>17</source>
-					<target>17</target>
+					<message>Maven artifacts for ${project.version}</message>
+					<noJekyll>true</noJekyll>
+					<outputDirectory>${project.build.directory}</outputDirectory>
+					<branch>refs/heads/${branch-name}</branch>
+					<includes>
+						<include>**/*</include>
+					</includes>
+					<merge>true</merge>
+					<repositoryName>${repository-name}</repositoryName>
+					<repositoryOwner>${repository-owner}</repositoryOwner>
+					<server>github</server>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>site</goal>
+						</goals>
+						<phase>deploy</phase>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>2.8.2</version>
+				<configuration>
+					<altDeploymentRepository>
+						internal.repo::default::file://${project.build.directory}/mvn-artifact
+					</altDeploymentRepository>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>3.1.0</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
+		</pluginManagement>
 	</build>
 
+	<repositories>
+		<repository>
+			<id>PROJECT-REPO-URL</id>
+			<url>https://github.com/${repository-owner}/${repository-name}/${branch-name}</url>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+		</repository>
+	</repositories>
+
 	<properties>
+		<repository-owner>anas-elgarhy</repository-owner>
+		<repository-name>alquran-cloud-api</repository-name>
+		<branch-name>master</branch-name>
+		<github.global.server>github</github.global.server>
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
 	</properties>
