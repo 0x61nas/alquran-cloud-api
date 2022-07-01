@@ -106,6 +106,7 @@ public class QuranAPI {
      * It returns an array of all available languages.
      *
      * @return An array of strings containing all the languages of the editions.
+     * @throws IOException If an error occurs while communicating with the API.
      */
     public static String[] getAllEditionsLanguages() throws IOException {
         final var jsonFile = Requester.sendRequest("edition/language");
