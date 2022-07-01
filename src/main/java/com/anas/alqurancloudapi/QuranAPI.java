@@ -285,7 +285,7 @@ public class QuranAPI {
     }
 
     /*public static Page getRandomPage(final Edition edition) throws IOException {
-        return getPage((int) (Math.random() * edition.getPagesNumber()), edition);
+        return getPageNumber((int) (Math.random() * edition.getPagesNumber()), edition);
     }*/
 
     @JsonIgnoreProperties(ignoreUnknown = true)
