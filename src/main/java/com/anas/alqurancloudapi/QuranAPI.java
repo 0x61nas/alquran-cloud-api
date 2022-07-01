@@ -116,6 +116,77 @@ public class QuranAPI {
     }
 
     /**
+     * It returns an random language from the list of all available languages.
+     *
+     * @return A random language from the list of all languages.
+     * @throws IOException If an error occurs while communicating with the API.
+     */
+    public static String getRandomLanguage() throws IOException {
+        final var allLanguages = getAllEditionsLanguages();
+        return allLanguages[(int) (Math.random() * allLanguages.length)];
+    }
+
+    /**
+     * It returns a random edition from the list of all available editions, with a given format and language and type.
+     * <b>The parameters are optional.</b>
+     *
+     * @param format The format of the edition (text or audio).
+     * @param language The language of the edition. Must be a 2 character language code, e.g. en, ar, fr, etc.
+     * @param editionType The type of edition you want to get.
+     * @return A random edition from the list of all editions.
+     * @throws IOException If an error occurs while communicating with the API.
+     */
+    public static Edition getRandomEdition(final EditionFormat format,
+                                           final String language,
+                                           final EditionType editionType) throws IOException {
+        final var allEditions = getEditions(format, language, editionType);
+        return allEditions[(int) (Math.random() * allEditions.length)];
+    }
+
+    /**
+     * It returns a random edition from the list of all available editions, with a given format and language.
+     *
+     * @param format The format of the edition you want to get (text or audio).
+     * @param language The language of the edition you want to get (2 character language code, e.g. en, ar, fr, etc.).
+     * @return A random edition from the list of all editions.
+     * @throws IOException If an error occurs while communicating with the API.
+     */
+    public static Edition getRandomEdition(final EditionFormat format,
+                                           final String language) throws IOException {
+        return getRandomEdition(format, language, null);
+    }
+
+    /**
+     * It returns a random edition from the list of all available editions, with a given format.
+     *
+     * @param format The format of the edition you want to get (text or audio).
+     * @return A random edition from the list of all editions.
+     * @throws IOException If an error occurs while communicating with the API.
+     */
+    public static Edition getRandomEdition(final EditionFormat format) throws IOException {
+        return getRandomEdition(format, null, null);
+    }
+
+    /**
+     * It returns a random edition from the list of all available editions with a given language.
+     *
+     * @param language The language of the edition you want to get (2 character language code, e.g. en, ar, fr, etc.).
+     * @return A random edition from the list of all editions.
+     */
+    public static Edition getRandomEdition(String language) throws IOException {
+        return getRandomEdition(null, language, null);
+    }
+    /**
+     * It returns a random edition from the list of all available editions.
+     *
+     * @return A random edition of the book.
+     * @throws IOException If an error occurs while communicating with the API.
+     */
+    public static Edition getRandomEdition() throws IOException {
+        return getRandomEdition(null, null, null);
+    }
+
+    /**
      * It takes a surah number and an edition, and returns a Surah object
      *
      * @param surahNumber The number of the surah.
