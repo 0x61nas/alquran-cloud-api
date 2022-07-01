@@ -1,12 +1,16 @@
 package com.anas.alqurancloudapi.quran;
 
+/**
+ * It contains constants that contain the number of ayahs, surahs, characters, words, Meccan surahs, Medinan surahs, and
+ * sajdahs in the Quran
+ */
 public class Constants {
     /**
-     * The constant representing the naumber of all ayahs in the Quran without the bismillah.
+     * The constant representing the naumber of all ayahs in the Quran without the bismillahs.
      */
     public static final int AYAS_COUNT = 6236;
     /**
-     * The constant representing the number of all ayahs in the Quran including the bismillah.
+     * The constant representing the number of all ayahs in the Quran including the bismillahs.
      */
     public static final int AYAHS_COUNT_WITH_BISMILLAH = AYAS_COUNT + 112;
     /**
