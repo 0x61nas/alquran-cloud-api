@@ -102,6 +102,13 @@ public class QuranAPI {
         return getEditions((EditionType) null);
     }
 
+    public static String[] getAllEditionsLanguages() throws IOException {
+        final var jsonFile = Requester.sendRequest("edition/language");
+        final var languages = mapper.readValue(jsonFile, String[].class);
+        jsonFile.delete();
+        return languages;
+    }
+
     /**
      * It takes a surah number and an edition, and returns a Surah object
      *
