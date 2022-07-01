@@ -2,6 +2,10 @@ package com.anas.alqurancloudapi.quran.edition;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * The type of the edition.
+ * Quran, Translation, Transliteration, Tafsir.
+ */
 public enum EditionType {
     @JsonProperty("quran")
     QURAN,
