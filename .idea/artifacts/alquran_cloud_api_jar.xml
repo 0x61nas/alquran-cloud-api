@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="alquran-cloud-api:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/alquran_cloud_api_jar</output-path>
+    <root id="archive" name="alquran-cloud-api.jar">
+      <element id="module-output" name="alquran-cloud-api" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-annotations/2.13.3/jackson-annotations-2.13.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-core/2.13.3/jackson-core-2.13.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-databind/2.13.3/jackson-databind-2.13.3.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
