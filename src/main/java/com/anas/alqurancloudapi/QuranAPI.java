@@ -1,6 +1,7 @@
 package com.anas.alqurancloudapi;
 
 import com.anas.alqurancloudapi.api.Requester;
+import com.anas.alqurancloudapi.consts.Surahs;
 import com.anas.alqurancloudapi.quran.Ayah;
 import com.anas.alqurancloudapi.consts.Constants;
 import com.anas.alqurancloudapi.quran.Page;
@@ -30,7 +31,7 @@ public class QuranAPI {
      * @param language The language of the edition. Must be a 2 character language code, e.g. en, ar, fr, etc.
      * @param type     The type of edition you want to get.
      * @return An array containing all available editions.
-     * @throws IOException If an error occurs while communicating with the API.
+     * @throws IOException If an error occurs while communicating with the API, or if an error in argument is passed.
      */
     public static Edition[] getEditions(final EditionFormat format,
                                         final String language,
@@ -231,6 +232,40 @@ public class QuranAPI {
     }
 
     /**
+     * > This function returns a Surah object from the Quran API
+     *
+     * @param surah The surah you want to get.
+     * @return A Surah object
+     * @throws IOException If an error occurs while communicating with the API.
+     */
+    public static Surah getSurah(final Surahs surah) throws IOException {
+        return getSurah(surah.getNumber(), (Edition) null);
+    }
+
+    /**
+     * This function returns a Surah object for the given surah and edition
+     *
+     * @param surah The surah you want to get.
+     * @param edition The edition you want to use.
+     * @return A Complete Surah object
+     * @throws IOException If an error occurs while communicating with the API.
+     */
+    public static Surah getSurah(final Surahs surah, final Edition edition) throws IOException {
+        return getSurah(surah.getNumber(), edition);
+    }
+
+    /**
+     * This function returns a complete Surah object for the given surah and edition identifier
+     * @param surah The surah you want to get.
+     * @param editionIdentifier The identifier of the edition you want to use.
+     * @return A Complete Surah object
+     * @throws IOException If an error occurs while communicating with the API.
+     */
+    public static Surah getSurah(final Surahs surah, final String editionIdentifier) throws IOException {
+        return getSurah(surah.getNumber(), editionIdentifier);
+    }
+
+    /**
      * Get a random surah from the Quran
      *
      * @param edition The edition of the Quran you want to get the surah from.
@@ -272,8 +307,8 @@ public class QuranAPI {
      */
     public static Ayah getAyah(final int ayahNumber, final Edition edition) throws IOException {
         // Checking if the surah number is valid.
-        if (ayahNumber < 1 || ayahNumber > Constants.AYAHS_COUNT_WITH_BISMILLAH) {
-            throw new IllegalArgumentException("Ayah number must be between 1 and " + Constants.AYAHS_COUNT_WITH_BISMILLAH);
+        if (ayahNumber < 1 || ayahNumber > Constants.AYAHS_COUNT) {
+            throw new IllegalArgumentException("Ayah number must be between 1 and " + Constants.AYAHS_COUNT);
         }
         final var jsonFile = Requester.sendRequest("ayah/" + ayahNumber
                 + (edition != null ? "/" + edition.getIdentifier() : ""));
@@ -314,7 +349,7 @@ public class QuranAPI {
      * @throws IOException If an error occurs while communicating with the API.
      */
     public static Ayah getRandomAyah(final Edition edition) throws IOException {
-        return getAyah((int) (Math.random() * Constants.AYAHS_COUNT_WITH_BISMILLAH), edition);
+        return getAyah((int) (Math.random() * Constants.AYAHS_COUNT), edition);
     }
 
     /**
@@ -338,6 +373,82 @@ public class QuranAPI {
         return getRandomAyah((Edition) null);
     }
 
+    /**
+     * This function returns an ayah from specified surah and ayah number
+     *
+     * @param surah The surah you want to get the ayah from.
+     * @param ayahNumber The ayah number in the surah.
+     * @param edition The edition of the Quran you want to use, (null mens default edition).
+     * @return An Ayah object.
+     * @throws IOException If an error occurs while communicating with the API.
+     */
+    public static Ayah getAyahFromSurah(final Surahs surah,
+                                        final int ayahNumber,
+                                        final Edition edition) throws IOException {
+        return getAyah(surah.getFactAyahNumber(ayahNumber), edition);
+    }
+
+    /**
+     * This function returns an Ayah object from a Surah object, ayah number, and edition identifier
+     *
+     * @param surah The surah you want to get the ayah from.
+     * @param ayahNumber The ayah number you want to get.
+     * @param editionIdentifier The identifier of the edition you want to use.
+     * @return An Ayah object.
+     * @throws IOException If an error occurs while communicating with the API.
+     */
+    public static Ayah getAyahFromSurah(final Surahs surah,
+                                        final int ayahNumber,
+                                        final String editionIdentifier) throws IOException {
+        return getAyahFromSurah(surah, ayahNumber, new Edition(editionIdentifier));
+    }
+
+    /**
+     * Get the Ayah object from specified surah.
+     *
+     * @param surah The surah you want to get the ayah from.
+     * @param ayahNumber The ayah number in the surah
+     * @return An Ayah object
+     * @throws IOException If an error occurs while communicating with the API.
+     */
+    public static Ayah getAyahFromSurah(final Surahs surah, final int ayahNumber) throws IOException {
+        return getAyah(surah.getFactAyahNumber(ayahNumber), (Edition) null);
+    }
+
+    /**
+     * This function returns an Ayah object from a specified surah and edition
+     *
+     * @param surah The surah you want to get the ayah from.
+     * @param edition The edition of the Quran you want to use.
+     * @return A random ayah from a surah.
+     * @throws IOException If an error occurs while communicating with the API.
+     */
+    public static Ayah getRandomAyahFromSurah(final Surahs surah, final Edition edition) throws IOException {
+        return getAyah(surah.getFactAyahNumber((int) (Math.random() * surah.getNumberOfAyahs())), edition);
+    }
+
+    /**
+     * This function returns an Ayah object from a specified surah and edition.
+     *
+     * @param surah The surah you want to get a random ayah from.
+     * @param editionIdentifier The identifier of the edition you want to use.
+     * @return An Ayah object
+     * @throws IOException If an error occurs while communicating with the API.
+     */
+    public static Ayah getRandomAyahFromSurah(final Surahs surah, final String editionIdentifier) throws IOException {
+        return getRandomAyahFromSurah(surah, new Edition(editionIdentifier));
+    }
+
+    /**
+     * This function returns a random ayah from a given surah
+     *
+     * @param surah The surah you want to get a random ayah from.
+     * @return An Ayah object
+     * @throws IOException If an error occurs while communicating with the API.
+     */
+    public static Ayah getRandomAyahFromSurah(final Surahs surah) throws IOException {
+        return getRandomAyahFromSurah(surah, (Edition) null);
+    }
 
     /**
      * It returns a `Page` object that contains the information of the page number that was passed as an argument

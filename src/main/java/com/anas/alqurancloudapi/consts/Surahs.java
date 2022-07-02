@@ -141,6 +141,16 @@ public enum Surahs {
         return numberOfAyahs;
     }
     public int getNumber() {
-        return ordinal() + 1;
+        return this.ordinal() + 1;
+    }
+
+    public int getFactAyahNumber(final int ayahNumber) {
+        int factAyahNumber = 0;
+        for (int i = 0; i < this.ordinal(); i++) {
+            factAyahNumber += Surahs.values()[i].getNumberOfAyahs();
+        }
+        factAyahNumber += ayahNumber;
+        return factAyahNumber;
+
     }
 }
