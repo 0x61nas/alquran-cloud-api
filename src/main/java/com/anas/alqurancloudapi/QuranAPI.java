@@ -42,7 +42,7 @@ public class QuranAPI {
         final var jsonFile = Requester.sendRequest("edition" +
                 (format != null ? "?format=" + format.name().toLowerCase() : "") +
                 (type != null ? (format != null ? "&" : "?") + "type=" + type.name().toLowerCase() : "") +
-                (language != null ?  (format != null || type != null ? "&" : "?") +"language=" + language : ""));
+                (language != null ? (format != null || type != null ? "&" : "?") + "language=" + language : ""));
         final var editions = mapper.readValue(jsonFile, Edition[].class);
         jsonFile.delete();
         return editions;
@@ -131,8 +131,8 @@ public class QuranAPI {
      * It returns a random edition from the list of all available editions, with a given format and language and type.
      * <b>The parameters are optional.</b>
      *
-     * @param format The format of the edition (text or audio).
-     * @param language The language of the edition. Must be a 2 character language code, e.g. en, ar, fr, etc.
+     * @param format      The format of the edition (text or audio).
+     * @param language    The language of the edition. Must be a 2 character language code, e.g. en, ar, fr, etc.
      * @param editionType The type of edition you want to get.
      * @return A random edition from the list of all editions.
      * @throws IOException If an error occurs while communicating with the API.
@@ -147,7 +147,7 @@ public class QuranAPI {
     /**
      * It returns a random edition from the list of all available editions, with a given format and language.
      *
-     * @param format The format of the edition you want to get (text or audio).
+     * @param format   The format of the edition you want to get (text or audio).
      * @param language The language of the edition you want to get (2 character language code, e.g. en, ar, fr, etc.).
      * @return A random edition from the list of all editions.
      * @throws IOException If an error occurs while communicating with the API.
@@ -170,13 +170,15 @@ public class QuranAPI {
 
     /**
      * It returns a random edition from the list of all available editions with a given language.
-     *:"""
+     * :"""
+     *
      * @param language The language of the edition you want to get (2 character language code, e.g. en, ar, fr, etc.).
      * @return A random edition from the list of all editions.
      */
     public static Edition getRandomEdition(String language) throws IOException {
         return getRandomEdition(null, language, null);
     }
+
     /**
      * It returns a random edition from the list of all available editions.
      *
@@ -192,8 +194,8 @@ public class QuranAPI {
      *
      * @param surahNumber The number of the surah.
      * @param edition     The edition of the Quran that you want to get the surah from.
-     * @param offset the number of start (ayah number - 1), if you want to get a range of ayahs, -1 if you don't want to specify an offset.
-     * @param limit the number of end (ayah number - 1), if you want to get a range of ayahs, -1 if you don't want to specify an limit.
+     * @param offset      the number of start (ayah number - 1), if you want to get a range of ayahs, -1 if you don't want to specify an offset.
+     * @param limit       the number of end (ayah number - 1), if you want to get a range of ayahs, -1 if you don't want to specify an limit.
      * @return A Surah object.
      * @throws IOException If an error occurs while communicating with the API.
      */
@@ -213,7 +215,7 @@ public class QuranAPI {
         final var jsonFile = Requester.sendRequest("surah/" + surahNumber +
                 (edition != null ? "/" + edition.getIdentifier() : "") +
                 (offset > -1 ? "?offset=" + offset : "") +
-                (limit > -1 ?  ((offset > -1 ? "&" : "?") + "limit=") + limit : ""));
+                (limit > -1 ? ((offset > -1 ? "&" : "?") + "limit=") + limit : ""));
         final var o = mapper.readValue(jsonFile, Surah.class);
         // It deletes the temporary file that was created by the `Requester` class.
         jsonFile.delete();
@@ -223,10 +225,10 @@ public class QuranAPI {
     /**
      * It takes a surah number and an edition and offset and limit and returns a Surah object.
      *
-     * @param surahNumber The number of the surah.
+     * @param surahNumber       The number of the surah.
      * @param editionIdentifier The edition identifier of the edition that you want to get the surah from.
-     * @param offset the number of start (ayah number - 1), if you want to get a range of ayahs, -1 if you don't want to specify an offset.
-     * @param limit the number of end (ayah number - 1), if you want to get a range of ayahs, -1 if you don't want to specify an limit.
+     * @param offset            the number of start (ayah number - 1), if you want to get a range of ayahs, -1 if you don't want to specify an offset.
+     * @param limit             the number of end (ayah number - 1), if you want to get a range of ayahs, -1 if you don't want to specify an limit.
      * @return A Surah object.
      * @throws IOException If an error occurs while communicating with the API.
      */
@@ -240,7 +242,7 @@ public class QuranAPI {
     /**
      * It takes a surah number and an edition, and returns a Surah object
      *
-     * @param surahNumber The number of the surah.
+     * @param surahNumber       The number of the surah.
      * @param editionIdentifier The edition identifier of the edition that you want to get the surah from.
      * @return A Surah object.
      * @throws IOException If an error occurs while communicating with the API.
@@ -254,8 +256,8 @@ public class QuranAPI {
      * This function returns a Surah object for the given surah number and offset and limit, in default edition (arabic).
      *
      * @param surahNumber The number of the surah you want to get.
-     * @param offset the number of start (ayah number - 1), if you want to get a range of ayahs, -1 if you don't want to specify an offset.
-     * @param limit the number of end (ayah number - 1), if you want to get a range of ayahs, -1 if you don't want to specify a limit.
+     * @param offset      the number of start (ayah number - 1), if you want to get a range of ayahs, -1 if you don't want to specify an offset.
+     * @param limit       the number of end (ayah number - 1), if you want to get a range of ayahs, -1 if you don't want to specify a limit.
      * @return A Surah object
      * @throws IOException If an error occurs while communicating with the API.
      */
@@ -264,6 +266,7 @@ public class QuranAPI {
                                  final int limit) throws IOException {
         return getSurah(surahNumber, (Edition) null, offset, limit);
     }
+
     /**
      * This function returns a Surah object for the given surah number in arabic edition.
      *
@@ -289,10 +292,10 @@ public class QuranAPI {
     /**
      * This function returns a Surah object for the given surah and edition and offset and limit.
      *
-     * @param surah The surah you want to get.
+     * @param surah   The surah you want to get.
      * @param edition The edition you want to use.
-     * @param offset the number of start (ayah number - 1), if you want to get a range of ayahs, -1 if you don't want to specify an offset.
-     * @param limit the number of end (ayah number - 1), if you want to get a range of ayahs, -1 if you don't want to specify a limit.
+     * @param offset  the number of start (ayah number - 1), if you want to get a range of ayahs, -1 if you don't want to specify an offset.
+     * @param limit   the number of end (ayah number - 1), if you want to get a range of ayahs, -1 if you don't want to specify a limit.
      * @return A Complete Surah object
      * @throws IOException If an error occurs while communicating with the API.
      */
@@ -306,7 +309,7 @@ public class QuranAPI {
     /**
      * This function returns a Surah object for the given surah and edition
      *
-     * @param surah The surah you want to get.
+     * @param surah   The surah you want to get.
      * @param edition The edition you want to use.
      * @return A Complete Surah object
      * @throws IOException If an error occurs while communicating with the API.
@@ -317,7 +320,8 @@ public class QuranAPI {
 
     /**
      * This function returns a complete Surah object for the given surah and edition identifier
-     * @param surah The surah you want to get.
+     *
+     * @param surah             The surah you want to get.
      * @param editionIdentifier The identifier of the edition you want to use.
      * @return A Complete Surah object
      * @throws IOException If an error occurs while communicating with the API.
@@ -331,8 +335,8 @@ public class QuranAPI {
      * Get a random surah from the Quran in a given edition, and with a given offset and limit.
      *
      * @param edition The edition of the Quran you want to get the surah from.
-     * @param offset the number of start (ayah number - 1), if you want to get a range of ayahs, -1 if you don't want to specify an offset.
-     * @param limit the number of end (ayah number - 1), if you want to get a range of ayahs, -1 if you don't want to specify an limit.
+     * @param offset  the number of start (ayah number - 1), if you want to get a range of ayahs, -1 if you don't want to specify an offset.
+     * @param limit   the number of end (ayah number - 1), if you want to get a range of ayahs, -1 if you don't want to specify an limit.
      * @return A random surah from the Quran.
      * @throws IOException If an error occurs while communicating with the API.
      */
@@ -361,8 +365,8 @@ public class QuranAPI {
      * This function returns a random surah from the Quran in a given edition and offset and limit.
      *
      * @param editionIdentifier The identifier of the edition you want to use.
-     * @param offset the number of start (ayah number - 1), if you want to get a range of ayahs, -1 if you don't want to specify an offset.
-     * @param limit the number of end (ayah number - 1), if you want to get a range of ayahs, -1 if you don't want to specify a limit.
+     * @param offset            the number of start (ayah number - 1), if you want to get a range of ayahs, -1 if you don't want to specify an offset.
+     * @param limit             the number of end (ayah number - 1), if you want to get a range of ayahs, -1 if you don't want to specify a limit.
      * @return A Surah object
      * @throws IOException If an error occurs while communicating with the API.
      */
@@ -388,7 +392,7 @@ public class QuranAPI {
      * This function returns a random surah from the Quran in a  default edition (arabic), and with a given offset and limit.
      *
      * @param offset the number of start (ayah number - 1), if you want to get a range of ayahs, -1 if you don't want to specify an offset.
-     * @param limit the number of end (ayah number - 1), if you want to get a range of ayahs, -1 if you don't want to specify a limit.
+     * @param limit  the number of end (ayah number - 1), if you want to get a range of ayahs, -1 if you don't want to specify a limit.
      * @return A random surah from the Quran.
      * @throws IOException If an error occurs while communicating with the API.
      */
@@ -485,9 +489,9 @@ public class QuranAPI {
     /**
      * This function returns an ayah from specified surah and ayah number
      *
-     * @param surah The surah you want to get the ayah from.
+     * @param surah      The surah you want to get the ayah from.
      * @param ayahNumber The ayah number in the surah.
-     * @param edition The edition of the Quran you want to use, (null mens default edition).
+     * @param edition    The edition of the Quran you want to use, (null mens default edition).
      * @return An Ayah object.
      * @throws IOException If an error occurs while communicating with the API.
      */
@@ -500,8 +504,8 @@ public class QuranAPI {
     /**
      * This function returns an Ayah object from a Surah object, ayah number, and edition identifier
      *
-     * @param surah The surah you want to get the ayah from.
-     * @param ayahNumber The ayah number you want to get.
+     * @param surah             The surah you want to get the ayah from.
+     * @param ayahNumber        The ayah number you want to get.
      * @param editionIdentifier The identifier of the edition you want to use.
      * @return An Ayah object.
      * @throws IOException If an error occurs while communicating with the API.
@@ -515,7 +519,7 @@ public class QuranAPI {
     /**
      * Get the Ayah object from specified surah.
      *
-     * @param surah The surah you want to get the ayah from.
+     * @param surah      The surah you want to get the ayah from.
      * @param ayahNumber The ayah number in the surah
      * @return An Ayah object
      * @throws IOException If an error occurs while communicating with the API.
@@ -527,7 +531,7 @@ public class QuranAPI {
     /**
      * This function returns an Ayah object from a specified surah and edition
      *
-     * @param surah The surah you want to get the ayah from.
+     * @param surah   The surah you want to get the ayah from.
      * @param edition The edition of the Quran you want to use.
      * @return A random ayah from a surah.
      * @throws IOException If an error occurs while communicating with the API.
@@ -539,7 +543,7 @@ public class QuranAPI {
     /**
      * This function returns an Ayah object from a specified surah and edition.
      *
-     * @param surah The surah you want to get a random ayah from.
+     * @param surah             The surah you want to get a random ayah from.
      * @param editionIdentifier The identifier of the edition you want to use.
      * @return An Ayah object
      * @throws IOException If an error occurs while communicating with the API.
@@ -564,7 +568,7 @@ public class QuranAPI {
      *
      * @param pageNumber The page number of the Quran.
      * @param edition    The edition of the Quran you want to get the page from.
-     * @return A Page object.
+     * @return A Quran collection object that contains the information of the page.
      * @throws IOException If an error occurs while communicating with the API.
      */
     public static QuranCollection getPage(final int pageNumber, final Edition edition) throws IOException {
@@ -584,7 +588,7 @@ public class QuranAPI {
      * This function returns a page from the Quran for the given page number and arabic edition
      *
      * @param pageNumber The page number of the page you want to get.
-     * @return A Page object
+     * @return A Quran collection object that contains the information of the page.
      * @throws IOException If an error occurs while communicating with the API.
      */
     public static QuranCollection getPage(final int pageNumber) throws IOException {
@@ -596,7 +600,7 @@ public class QuranAPI {
      *
      * @param pageNumber        The page number of the page you want to get.
      * @param editionIdentifier The identifier of the edition you want to get the page from.
-     * @return A Page object
+     * @return A Quran collection object that contains the information of the page.
      * @throws IOException If an error occurs while communicating with the API.
      */
     public static QuranCollection getPage(final int pageNumber, final String editionIdentifier) throws IOException {
@@ -606,6 +610,83 @@ public class QuranAPI {
     /*public static Page getRandomPage(final Edition edition) throws IOException {
         return getPageNumber((int) (Math.random() * edition.getPagesNumber()), edition);
     }*/
+
+    /**
+     * It returns a `QuranCollection` object that contains a list of `Ayah` and `Surah` objects that are in the juz
+     *
+     * @param juzNumber The juz number that you want to get must be between 1 and 30.
+     * @param edition   The edition of the Quran you want to get the juz from.
+     * @param offset    the number of start (ayah number - 1), if you want to get a range of ayahs, -1 if you don't want to specify an offset.
+     * @param limit     the number of end (ayah number - 1), if you want to get a range of ayahs, -1 if you don't want to specify a limit.
+     * @return A `QuranCollection` object contains the juz information.
+     */
+    public static QuranCollection getJuz(final int juzNumber,
+                                         final Edition edition,
+                                         final int offset,
+                                         final int limit) throws IOException {
+        // Checking if the surah number is valid.
+        if (juzNumber < 1 || juzNumber > 30) {
+            throw new IllegalArgumentException("Juz number must be greater than 0 and less than 31");
+        }
+        final var jsonFile = Requester.sendRequest("juz/" + juzNumber +
+                (edition != null ? "/" + edition.getIdentifier() : "") +
+                (offset > -1 ? "?offset=" + offset : "") +
+                (limit > -1 ? ((offset > -1 ? "&" : "?") + "limit=" + limit) : ""));
+        final var o = mapper.readValue(jsonFile, QuranCollection.class);
+        // It deletes the temporary file that was created by the `Requester` class.
+        jsonFile.delete();
+        return o;   // Page object
+    }
+
+    /**
+     * It returns a `QuranCollection` object that contains a list of `Ayah` and `Surah` objects that are in the juz
+     *
+     * @param juzNumber The juz number that you want to get must be between 1 and 30.
+     * @param editionIdentifier The identifier of the edition you want to get the juz from.
+     * @param offset    the number of start (ayah number - 1), if you want to get a range of ayahs, -1 if you don't want to specify an offset.
+     * @param limit     the number of end (ayah number - 1), if you want to get a range of ayahs, -1 if you don't want to specify a limit.
+     * @return A `QuranCollection` object contains the juz information.
+     */
+    public static QuranCollection getJuz(final int juzNumber,
+                                         final String editionIdentifier,
+                                         final int offset,
+                                         final int limit) throws IOException {
+        return getJuz(juzNumber, new Edition(editionIdentifier), offset, limit);
+    }
+
+    /**
+     * It returns a `QuranCollection` object that contains a list of `Ayah` and `Surah` objects that are in the juz
+     *
+     * @param juzNumber The juz number that you want to get must be between 1 and 30.
+     * @param edition The edition of the Quran you want to get the juz from.
+     * @return A `QuranCollection` object contains the juz information.
+     */
+    public static QuranCollection getJuz(final int juzNumber,
+                                         final Edition edition) throws IOException {
+        return getJuz(juzNumber, edition, -1, -1);
+    }
+
+    /**
+     * It returns a `QuranCollection` object that contains a list of `Ayah` and `Surah` objects that are in the juz
+     *
+     * @param juzNumber The juz number that you want to get must be between 1 and 30.
+     * @param editionIdentifier The identifier of the edition you want to get the juz from.
+     * @return A `QuranCollection` object contains the juz information.
+     */
+    public static QuranCollection getJuz(final int juzNumber,
+                                         final String editionIdentifier) throws IOException {
+        return getJuz(juzNumber, new Edition(editionIdentifier));
+    }
+
+    /**
+     * It returns a `QuranCollection` object that contains a list of `Ayah` and `Surah` objects that are in the juz
+     *
+     * @param juzNumber The juz number that you want to get must be between 1 and 30.
+     * @return A `QuranCollection` object contains the juz information.
+     */
+    public static QuranCollection getJuz(final int juzNumber) throws IOException {
+        return getJuz(juzNumber, (Edition) null);
+    }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     private static class SearchResult {
@@ -619,12 +700,13 @@ public class QuranAPI {
             return matches;
         }
     }
+
     /**
      * Search for a word or phrase in the Quran in the specific edition and specific surah.
      *
-     * @param keyword The keyword or phrase you want to search for.
+     * @param keyword     The keyword or phrase you want to search for.
      * @param surahNumber The surah number to search in. If you want to search in all surahs, set this to -1.
-     * @param edition The edition of the Quran you want to search in, default is english edition.
+     * @param edition     The edition of the Quran you want to search in, default is english edition.
      * @return An array of Ayah objects.
      * @throws IOException If there is an error while connecting to the server or if the server returns an error, or can't create the temporary file.
      */
@@ -649,7 +731,7 @@ public class QuranAPI {
      * Search for a keyword or phrase in the Quran in the specific edition and specific surah.
      *
      * @param keyword The keyword or phrase you want to search for.
-     * @param surah The surah number you want to search in.
+     * @param surah   The surah number you want to search in.
      * @param edition The edition of the Quran you want to search in.
      * @return An array of Ayah objects.
      * @throws IOException If there is an error while connecting to the server or if the server returns an error, or can't create the temporary file.
@@ -663,7 +745,7 @@ public class QuranAPI {
     /**
      * Search for a keyword in a specific surah
      *
-     * @param keyword The keyword to search for.
+     * @param keyword     The keyword to search for.
      * @param surahNumber The surah number to search in.
      * @return An array of Ayah objects.
      * @throws IOException If there is an error while connecting to the server or if the server returns an error, or can't create the temporary file.
@@ -677,7 +759,7 @@ public class QuranAPI {
      * Search for a keyword in a specific surah
      *
      * @param keyword The keyword to search for.
-     * @param surah The surah you want to search in.
+     * @param surah   The surah you want to search in.
      * @return An array of Ayah objects.
      * @throws IOException If there is an error while connecting to the server or if the server returns an error, or can't create the temporary file.
      */
@@ -700,8 +782,8 @@ public class QuranAPI {
     /**
      * Search for a keyword in a specific surah of a specific edition
      *
-     * @param keyword The keyword to search for.
-     * @param surahNumber The surah number to search in. If you want to search in all surahs, pass in 0.
+     * @param keyword           The keyword to search for.
+     * @param surahNumber       The surah number to search in. If you want to search in all surahs, pass in 0.
      * @param editionIdentifier The identifier of the edition you want to search in.
      * @return An array of Ayah objects.
      * @throws IOException If there is an error while connecting to the server or if the server returns an error, or can't create the temporary file.
@@ -715,8 +797,8 @@ public class QuranAPI {
     /**
      * Search for a keyword in a specific surah of a specific edition
      *
-     * @param keyword The keyword to search for.
-     * @param surah The surah you want to search in.
+     * @param keyword           The keyword to search for.
+     * @param surah             The surah you want to search in.
      * @param editionIdentifier The identifier of the edition you want to search in.
      * @return An array of Ayah objects.
      * @throws IOException If there is an error while connecting to the server or if the server returns an error, or can't create the temporary file.
