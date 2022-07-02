@@ -4,7 +4,7 @@ import com.anas.alqurancloudapi.api.Requester;
 import com.anas.alqurancloudapi.consts.Surahs;
 import com.anas.alqurancloudapi.quran.Ayah;
 import com.anas.alqurancloudapi.consts.Constants;
-import com.anas.alqurancloudapi.quran.Page;
+import com.anas.alqurancloudapi.quran.QuranCollection;
 import com.anas.alqurancloudapi.quran.Surah;
 import com.anas.alqurancloudapi.quran.edition.Edition;
 import com.anas.alqurancloudapi.quran.edition.EditionFormat;
@@ -567,14 +567,14 @@ public class QuranAPI {
      * @return A Page object.
      * @throws IOException If an error occurs while communicating with the API.
      */
-    public static Page getPage(final int pageNumber, final Edition edition) throws IOException {
+    public static QuranCollection getPage(final int pageNumber, final Edition edition) throws IOException {
         // Checking if the surah number is valid.
         if (pageNumber < 1) {
             throw new IllegalArgumentException("Page number must be greater than 0");
         }
         final var jsonFile = Requester.sendRequest("page/" + pageNumber
                 + (edition != null ? "/" + edition.getIdentifier() : ""));
-        final var o = mapper.readValue(jsonFile, Page.class);
+        final var o = mapper.readValue(jsonFile, QuranCollection.class);
         // It deletes the temporary file that was created by the `Requester` class.
         jsonFile.delete();
         return o;   // Page object
@@ -587,7 +587,7 @@ public class QuranAPI {
      * @return A Page object
      * @throws IOException If an error occurs while communicating with the API.
      */
-    public static Page getPage(final int pageNumber) throws IOException {
+    public static QuranCollection getPage(final int pageNumber) throws IOException {
         return getPage(pageNumber, (Edition) null);
     }
 
@@ -599,7 +599,7 @@ public class QuranAPI {
      * @return A Page object
      * @throws IOException If an error occurs while communicating with the API.
      */
-    public static Page getPage(final int pageNumber, final String editionIdentifier) throws IOException {
+    public static QuranCollection getPage(final int pageNumber, final String editionIdentifier) throws IOException {
         return getPage(pageNumber, new Edition(editionIdentifier));
     }
 

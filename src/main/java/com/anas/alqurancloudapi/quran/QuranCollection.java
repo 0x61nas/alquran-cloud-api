@@ -2,17 +2,19 @@ package com.anas.alqurancloudapi.quran;
 
 import com.anas.alqurancloudapi.quran.edition.Edition;
 
+import java.util.Map;
+
 /**
- * It represents the page of the Quran.
+ * It represents the page or juz of the Quran.
  */
-public class Page {
+public class QuranCollection {
     private final short number;
     private final Ayah[] ayahs;
-    private final Surah[] surahs;
+    private final Map<String, Surah> surahs;
     private final Edition edition;
 
     // For JSON deserialization
-    private Page() {
+    private QuranCollection() {
         this.number = 0;
         this.ayahs = null;
         this.surahs = null;
@@ -20,16 +22,16 @@ public class Page {
     }
 
     /**
-     * This function returns the number of the page in the Quran.
+     * This function returns the number of this collection in the Quran.
      *
-     * @return The number of the page in the Quran.
+     * @return The number of this collection in the Quran.
      */
     public short getNumber() {
         return number;
     }
 
     /**
-     * This function returns an array of Ayahs in the page.
+     * This function returns an array of Ayahs in this collection.
      *
      * @return An array of Ayah objects.
      */
@@ -38,16 +40,16 @@ public class Page {
     }
 
     /**
-     * This function returns an array of Surahs in the page.
+     * This function returns an array of Surahs in this collection.
      *
      * @return An array of Surah objects.
      */
-    public Surah[] getSurahs() {
+    public Map<String, Surah> getSurahs() {
         return surahs;
     }
 
     /**
-     * This function returns the edition of the page.
+     * This function returns the edition of this collection.
      *
      * @return The edition of the page.
      */
