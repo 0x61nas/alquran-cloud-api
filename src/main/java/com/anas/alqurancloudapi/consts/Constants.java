@@ -1,4 +1,4 @@
-package com.anas.alqurancloudapi.quran;
+package com.anas.alqurancloudapi.consts;
 
 /**
  * It contains constants that contain the number of ayahs, surahs, characters, words, Meccan surahs, Medinan surahs, and
@@ -37,4 +37,6 @@ public class Constants {
      * The constant represents the number of sajdahs in the Qur’an.
      */
     public static final int SAJDAHS_COUNT = 15;
+
+
 }

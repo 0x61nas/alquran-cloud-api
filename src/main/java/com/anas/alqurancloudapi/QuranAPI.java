@@ -2,7 +2,7 @@ package com.anas.alqurancloudapi;
 
 import com.anas.alqurancloudapi.api.Requester;
 import com.anas.alqurancloudapi.quran.Ayah;
-import com.anas.alqurancloudapi.quran.Constants;
+import com.anas.alqurancloudapi.consts.Constants;
 import com.anas.alqurancloudapi.quran.Page;
 import com.anas.alqurancloudapi.quran.Surah;
 import com.anas.alqurancloudapi.quran.edition.Edition;
