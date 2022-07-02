@@ -1,6 +1,13 @@
 # A simple java wrapper library for [alquran-cloud api](https://alquran.cloud/api) 🤍
 
 [![JitPack badge](https://jitpack.io/v/anas-elgarhy/alquran-cloud-api.svg)](https://jitpack.io/#anas-elgarhy/alquran-cloud-api)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=anas-elgarhy_alquran-cloud-api&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=anas-elgarhy_alquran-cloud-api)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=anas-elgarhy_alquran-cloud-api&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=anas-elgarhy_alquran-cloud-api)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=anas-elgarhy_alquran-cloud-api&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=anas-elgarhy_alquran-cloud-api)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=anas-elgarhy_alquran-cloud-api&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=anas-elgarhy_alquran-cloud-api)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=anas-elgarhy_alquran-cloud-api&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=anas-elgarhy_alquran-cloud-api)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=anas-elgarhy_alquran-cloud-api&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=anas-elgarhy_alquran-cloud-api)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=anas-elgarhy_alquran-cloud-api&metric=bugs)](https://sonarcloud.io/summary/new_code?id=anas-elgarhy_alquran-cloud-api)
 
 ## It still under development 🚧
 
@@ -148,3 +155,7 @@ public class Example3 {
 [![GitLab](https://img.shields.io/badge/GitLab-Mirror%20repo-brightgreen?style=for-the-badge&logo=GitLab)](https://gitlab.com/anas-elgarhy/alquran-cloud-api)
 [![BitBucket](https://img.shields.io/badge/BitBucket-Mirror%20repo-brightgreen?style=for-the-badge&logo=BitBucket)](https://bitbucket.org/anas_elgarhy/alquran-cloud-api)
 [![Codeberg](https://img.shields.io/badge/Codeberg-Mirror%20repo-brightgreen?style=for-the-badge&logo=Codeberg)](https://codeberg.org/anas-elgarhy/alquran-cloud-api)
+
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=anas-elgarhy_alquran-cloud-api)](https://sonarcloud.io/summary/new_code?id=anas-elgarhy_alquran-cloud-api)
+
+[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-black.svg)](https://sonarcloud.io/summary/new_code?id=anas-elgarhy_alquran-cloud-api)
