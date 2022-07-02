@@ -29,7 +29,12 @@ public class Requester {
         final var connection = (HttpURLConnection) new URL(BASE_URL + endPoint).openConnection();
         connection.setConnectTimeout(connectTimeout);
         connection.setRequestMethod("GET");
-        connection.connect();
+
+        // Skip the limit number of connections n_a
+        byte i = 0;
+        do {
+            connection.connect();
+        } while (connection.getResponseCode() == 429 && i++ < 3);
 
         // It checks if the response code is not 200, then it throws an exception.
         if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
