@@ -1,5 +1,7 @@
 package com.anas.alqurancloudapi.consts;
 
+import java.util.ArrayList;
+
 public enum Surahs {
     AL_FATIRAH("سورة الفاتحة", "Al-Fatiha", 7),  // 1 - Surah Al-Fatiha
     AL_BAQARA("سورة البقرة", "Al-Baqara", 286),  // 2 - Surah Al-Baqara
@@ -127,6 +129,16 @@ public enum Surahs {
         this.arabicName = arabicName;
         this.englishName = englishName;
         this.numberOfAyahs = (short) numberOfAyahs;
+    }
+
+    public static Surahs[] getAvailableSurahsForOffset(int offset) {
+        final var s = new ArrayList<Surahs>();
+        for (Surahs surah : Surahs.values()) {
+            if (surah.getNumber() > offset) {
+                s.add(surah);
+            }
+        }
+        return s.toArray(new Surahs[0]);
     }
 
     public String getArabicName() {

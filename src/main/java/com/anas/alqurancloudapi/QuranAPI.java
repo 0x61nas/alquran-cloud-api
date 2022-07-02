@@ -205,6 +205,11 @@ public class QuranAPI {
         if (surahNumber < 1 || surahNumber > Constants.SURAS_COUNT) {
             throw new IllegalArgumentException("Surah number must be between 1 and " + Constants.SURAS_COUNT);
         }
+        if (offset > Surahs.values()[surahNumber - 1].getNumberOfAyahs() - 1) {
+            throw new IllegalArgumentException("Offset must be between 0 and " +
+                    (Surahs.values()[surahNumber - 1].getNumberOfAyahs() - 1));
+        }
+
         final var jsonFile = Requester.sendRequest("surah/" + surahNumber +
                 (edition != null ? "/" + edition.getIdentifier() : "") +
                 (offset > -1 ? "?offset=" + offset : "") +
@@ -334,7 +339,11 @@ public class QuranAPI {
     public static Surah getRandomSurah(final Edition edition,
                                        final int offset,
                                        final int limit) throws IOException {
-        return getSurah((int) (Math.random() * Constants.SURAS_COUNT), edition, offset, limit);
+        if (offset > Surahs.AL_BAQARA.getNumberOfAyahs() - 1) {
+            throw new IllegalArgumentException("Offset must be between 0 and " + (Surahs.AL_BAQARA.getNumberOfAyahs() - 1) + " or -1");
+        }
+        final var availableSurahs = Surahs.getAvailableSurahsForOffset(offset);
+        return getSurah(availableSurahs[(int) (Math.random() * availableSurahs.length)], edition, offset, limit);
     }
 
     /**
