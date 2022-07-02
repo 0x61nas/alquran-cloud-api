@@ -242,7 +242,20 @@ public class QuranAPI {
     /**
      * It takes a surah number and an edition, and returns a Surah object
      *
-     * @param surahNumber       The number of the surah.
+     * @param surahNumber The number of the surah.
+     * @param edition The edition that you want to get the surah from.
+     * @return A Surah object.
+     * @throws IOException If an error occurs while communicating with the API.
+     */
+    public static Surah getSurah(final int surahNumber,
+                                 final Edition edition) throws IOException {
+        return getSurah(surahNumber, edition, -1, -1);
+    }
+
+    /**
+     * It takes a surah number and an edition, and returns a Surah object
+     *
+     * @param surahNumber The number of the surah.
      * @param editionIdentifier The edition identifier of the edition that you want to get the surah from.
      * @return A Surah object.
      * @throws IOException If an error occurs while communicating with the API.
