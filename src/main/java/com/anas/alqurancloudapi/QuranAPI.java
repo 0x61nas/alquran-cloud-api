@@ -39,13 +39,11 @@ public class QuranAPI {
         if (language != null && (language.length() != 2)) {
             throw new IllegalArgumentException("Language must be 2 characters long");
         }
-        final var jsonFile = Requester.sendRequest("edition" +
+        final var inputStream = Requester.sendRequest("edition" +
                 (format != null ? "?format=" + format.name().toLowerCase() : "") +
                 (type != null ? (format != null ? "&" : "?") + "type=" + type.name().toLowerCase() : "") +
                 (language != null ? (format != null || type != null ? "&" : "?") + "language=" + language : ""));
-        final var editions = mapper.readValue(jsonFile, Edition[].class);
-        jsonFile.delete();
-        return editions;
+        return mapper.readValue(inputStream, Edition[].class);
     }
 
     /**
@@ -110,10 +108,7 @@ public class QuranAPI {
      * @throws IOException If an error occurs while communicating with the API.
      */
     public static String[] getAllEditionsLanguages() throws IOException {
-        final var jsonFile = Requester.sendRequest("edition/language");
-        final var languages = mapper.readValue(jsonFile, String[].class);
-        jsonFile.delete();
-        return languages;
+        return mapper.readValue(Requester.sendRequest("edition/language"), String[].class);
     }
 
     /**
@@ -212,14 +207,11 @@ public class QuranAPI {
                     (Surahs.values()[surahNumber - 1].getNumberOfAyahs() - 1));
         }
 
-        final var jsonFile = Requester.sendRequest("surah/" + surahNumber +
+        final var inputStream = Requester.sendRequest("surah/" + surahNumber +
                 (edition != null ? "/" + edition.getIdentifier() : "") +
                 (offset > -1 ? "?offset=" + offset : "") +
                 (limit > -1 ? ((offset > -1 ? "&" : "?") + "limit=") + limit : ""));
-        final var o = mapper.readValue(jsonFile, Surah.class);
-        // It deletes the temporary file that was created by the `Requester` class.
-        jsonFile.delete();
-        return o;   // Surah object
+        return mapper.readValue(inputStream, Surah.class);   // Surah object
     }
 
     /**
@@ -436,12 +428,9 @@ public class QuranAPI {
         if (ayahNumber < 1 || ayahNumber > Constants.AYAHS_COUNT) {
             throw new IllegalArgumentException("Ayah number must be between 1 and " + Constants.AYAHS_COUNT);
         }
-        final var jsonFile = Requester.sendRequest("ayah/" + ayahNumber
+        final var inputStream = Requester.sendRequest("ayah/" + ayahNumber
                 + (edition != null ? "/" + edition.getIdentifier() : ""));
-        final var o = mapper.readValue(jsonFile, Ayah.class);
-        // It deletes the temporary file that was created by the `Requester` class.
-        jsonFile.delete();
-        return o;   // Ayah object
+        return mapper.readValue(inputStream, Ayah.class);   // Ayah object
     }
 
     /**
@@ -589,12 +578,9 @@ public class QuranAPI {
         if (pageNumber < 1) {
             throw new IllegalArgumentException("Page number must be greater than 0");
         }
-        final var jsonFile = Requester.sendRequest("page/" + pageNumber
+        final var inputStream = Requester.sendRequest("page/" + pageNumber
                 + (edition != null ? "/" + edition.getIdentifier() : ""));
-        final var o = mapper.readValue(jsonFile, QuranCollection.class);
-        // It deletes the temporary file that was created by the `Requester` class.
-        jsonFile.delete();
-        return o;   // Page object
+        return mapper.readValue(inputStream, QuranCollection.class);   // Page object
     }
 
     /**
@@ -641,14 +627,11 @@ public class QuranAPI {
         if (juzNumber < 1 || juzNumber > 30) {
             throw new IllegalArgumentException("Juz number must be greater than 0 and less than 31");
         }
-        final var jsonFile = Requester.sendRequest("juz/" + juzNumber +
+        final var inputStream = Requester.sendRequest("juz/" + juzNumber +
                 (edition != null ? "/" + edition.getIdentifier() : "") +
                 (offset > -1 ? "?offset=" + offset : "") +
                 (limit > -1 ? ((offset > -1 ? "&" : "?") + "limit=" + limit) : ""));
-        final var o = mapper.readValue(jsonFile, QuranCollection.class);
-        // It deletes the temporary file that was created by the `Requester` class.
-        jsonFile.delete();
-        return o;   // Page object
+        return mapper.readValue(inputStream, QuranCollection.class);   // Page object
     }
 
     /**
@@ -730,13 +713,11 @@ public class QuranAPI {
         if (keyword == null || keyword.isEmpty()) {
             throw new IllegalArgumentException("Keyword cannot be null or empty");
         }
-        final var jsonFile = Requester.sendRequest("search/" +
+        final var inputStream = Requester.sendRequest("search/" +
                 keyword.replace(" ", "%20") + "/" +
                 (surahNumber - 1 > -1 ? surahNumber : "all") + "/" +
                 (edition != null ? "/" + edition.getIdentifier() : "en"));
-        final var o = mapper.readValue(jsonFile, SearchResult.class);
-        // It deletes the temporary file that was created by the `Requester` class.
-        jsonFile.delete();
+        final var o = mapper.readValue(inputStream, SearchResult.class);
         return o.matches;
     }
 
