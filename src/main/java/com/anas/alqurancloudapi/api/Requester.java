@@ -34,7 +34,9 @@ public class Requester {
             connection.connect();
             try {
                 Thread.sleep(50);
-            } catch (InterruptedException ignored) { }
+            } catch (InterruptedException ie) {
+                Thread.currentThread().interrupt(); // Restore the interrupted status
+            }
         } while (connection.getResponseCode() == 429 && i++ < 3);
 
         // It checks if the response code is not 200, then it throws an exception.
