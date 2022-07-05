@@ -1,8 +1,6 @@
 package com.anas.alqurancloudapi.api;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -22,10 +20,10 @@ public class Requester {
      * It sends a GET request to the API, remove the ignored properties, and saves the response to a file and returns it.
      *
      * @param endPoint The endpoint to send the request to.
-     * @return A json file containing the response.
+     * @return A input stream of the response.
      * @throws IOException If an error occurs while sending the request or saving the response to a file.
      */
-    public static File sendRequest(final String endPoint) throws IOException {
+    public static InputStream sendRequest(final String endPoint) throws IOException {
         final var connection = (HttpURLConnection) new URL(BASE_URL + endPoint).openConnection();
         connection.setConnectTimeout(connectTimeout);
         connection.setRequestMethod("GET");
@@ -56,14 +54,7 @@ public class Requester {
         // It removes the ignored properties from the response.
         response = response.substring(response.indexOf("\"data\":") + 7, response.length() - 1);
 
-        // It creates a file in the cache folder with the name of the endpoint.
-        final var file = CacheHelper.getCacheFile(endPoint);
-        // It writes the response to the file.
-        final var writer = new FileWriter(file);
-        writer.write(response);
-        writer.close();
-
-        return file;
+        return new ByteArrayInputStream(response.getBytes());
     }
 
     /**
