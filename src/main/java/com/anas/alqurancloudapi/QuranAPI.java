@@ -580,9 +580,7 @@ public class QuranAPI {
         }
         final var inputStream = Requester.sendRequest("page/" + pageNumber
                 + (edition != null ? "/" + edition.getIdentifier() : ""));
-        final var o = mapper.readValue(inputStream, QuranCollection.class);
-        // It deletes the temporary file that was created by the `Requester` class.
-        return o;   // Page object
+        return mapper.readValue(inputStream, QuranCollection.class);   // Page object
     }
 
     /**
@@ -633,9 +631,7 @@ public class QuranAPI {
                 (edition != null ? "/" + edition.getIdentifier() : "") +
                 (offset > -1 ? "?offset=" + offset : "") +
                 (limit > -1 ? ((offset > -1 ? "&" : "?") + "limit=" + limit) : ""));
-        final var o = mapper.readValue(inputStream, QuranCollection.class);
-        // It deletes the temporary file that was created by the `Requester` class.
-        return o;   // Page object
+        return mapper.readValue(inputStream, QuranCollection.class);   // Page object
     }
 
     /**
