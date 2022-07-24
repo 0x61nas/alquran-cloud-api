@@ -2,12 +2,13 @@ package com.anas.alqurancloudapi.quran;
 
 import com.anas.alqurancloudapi.quran.edition.Edition;
 
+import java.io.Serializable;
 import java.util.Map;
 
 /**
  * It represents the page or juz of the Quran.
  */
-public class QuranCollection {
+public class QuranCollection implements Serializable {
     private final short number;
     private final Ayah[] ayahs;
     private final Map<String, Surah> surahs;

@@ -4,10 +4,11 @@ import com.anas.alqurancloudapi.quran.edition.Edition;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Ayah {
+public class Ayah implements Serializable {
     private final short number;
     private final String text;
     @JsonProperty("audio")

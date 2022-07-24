@@ -2,13 +2,14 @@ package com.anas.alqurancloudapi.quran;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 /**
  * Represents a surah in the Quran.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Surah {
+public class Surah implements Serializable {
     private final int number;
     private final String name;
     private final String englishName;

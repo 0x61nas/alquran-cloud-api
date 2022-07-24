@@ -1,9 +1,11 @@
 package com.anas.alqurancloudapi.quran.edition;
 
+import java.io.Serializable;
+
 /**
  * It represents an edition of the Quran
  */
-public class Edition {
+public class Edition implements Serializable {
     private final String name;
     private final String identifier;
     private final String language;
