@@ -18,7 +18,7 @@ public class Surah implements Serializable {
     private final Ayah[] ayahs;
 
     // For JSON deserialization
-    private Surah() {
+    public Surah() {
         this.number = 0;
         this.name = null;
         this.englishName = null;

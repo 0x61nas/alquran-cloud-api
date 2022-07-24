@@ -15,7 +15,7 @@ public class QuranCollection implements Serializable {
     private final Edition edition;
 
     // For JSON deserialization
-    private QuranCollection() {
+    public QuranCollection() {
         this.number = 0;
         this.ayahs = null;
         this.surahs = null;

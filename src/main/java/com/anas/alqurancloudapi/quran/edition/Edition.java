@@ -15,7 +15,7 @@ public class Edition implements Serializable {
     private final Direction direction;
 
     // For JSON deserialization
-    protected Edition() {
+    public Edition() {
         this(null);
     }
 

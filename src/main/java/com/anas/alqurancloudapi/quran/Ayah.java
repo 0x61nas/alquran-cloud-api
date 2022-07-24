@@ -30,7 +30,7 @@ public class Ayah implements Serializable {
     private final boolean sajdah;
 
     // For JSON deserialization
-    private Ayah() {
+    public Ayah() {
         this.number = 0;
         this.text = null;
         this.audioUrl = null;
