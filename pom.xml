@@ -6,7 +6,7 @@
 
 	<groupId>com.anas.alqurancloudapi</groupId>
 	<artifactId>alquran-cloud-api</artifactId>
-	<version>0.2.2-v1</version>
+	<version>0.3.0-v1</version>
 	<packaging>jar</packaging>
 
 	<name>alquran-cloud-api</name>
