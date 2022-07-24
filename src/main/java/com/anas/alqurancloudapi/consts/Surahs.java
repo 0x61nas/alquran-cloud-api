@@ -131,9 +131,9 @@ public enum Surahs {
         this.numberOfAyahs = (short) numberOfAyahs;
     }
 
-    public static Surahs[] getAvailableSurahsForOffset(int offset) {
+    public static Surahs[] getAvailableSurahsForOffset(final int offset) {
         final var s = new ArrayList<Surahs>();
-        for (Surahs surah : Surahs.values()) {
+        for (final var surah : Surahs.values()) {
             if (surah.getNumber() > offset) {
                 s.add(surah);
             }
@@ -156,13 +156,18 @@ public enum Surahs {
         return this.ordinal() + 1;
     }
 
+    /**
+     * Get the ayah number in all quran.
+     * @param ayahNumber the ayah number in the surah
+     * @return the ayah number in the quran
+     */
     public int getFactAyahNumber(final int ayahNumber) {
-        int factAyahNumber = 0;
-        for (int i = 0; i < this.ordinal(); i++) {
-            factAyahNumber += Surahs.values()[i].getNumberOfAyahs();
+        var factAyahNumber = 0;
+        final var surahs = Surahs.values();
+        for (var i = 0; i < this.ordinal(); i++) {
+            factAyahNumber += surahs[i].getNumberOfAyahs();
         }
         factAyahNumber += ayahNumber;
         return factAyahNumber;
-
     }
 }
