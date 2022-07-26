@@ -1,6 +1,6 @@
 package com.anas.alqurancloudapi.search;
 
-import com.anas.alqurancloudapi.quran.Ayah;
+import com.anas.alqurancloudapi.Ayah;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**

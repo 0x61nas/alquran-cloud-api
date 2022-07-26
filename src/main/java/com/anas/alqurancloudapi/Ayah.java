@@ -1,10 +1,9 @@
-package com.anas.alqurancloudapi.quran;
+package com.anas.alqurancloudapi;
 
-import com.anas.alqurancloudapi.Mapper;
 import com.anas.alqurancloudapi.api.Requester;
 import com.anas.alqurancloudapi.consts.Constants;
 import com.anas.alqurancloudapi.consts.Surahs;
-import com.anas.alqurancloudapi.quran.edition.Edition;
+import com.anas.alqurancloudapi.edition.Edition;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 

@@ -1,9 +1,9 @@
-package com.anas.alqurancloudapi.quran.edition;
+package com.anas.alqurancloudapi.edition;
 
 import com.anas.alqurancloudapi.Mapper;
 import com.anas.alqurancloudapi.api.Requester;
-import com.anas.alqurancloudapi.quran.Ayah;
-import com.anas.alqurancloudapi.quran.Surah;
+import com.anas.alqurancloudapi.Ayah;
+import com.anas.alqurancloudapi.Surah;
 import com.anas.alqurancloudapi.search.SearchResult;
 
 import java.io.IOException;
@@ -312,7 +312,8 @@ public class Edition implements Mapper {
      * @param keyword     The keyword to search for.
      * @param surahNumber The surah number to search in.
      * @return An array of Ayah objects.
-     * @throws IOException If there is an error while connecting to the server or if the server returns an error, or can't create the temporary file.
+     * @throws IOException If there is an error while connecting to the server or if the server returns an error,
+     * or can't create the temporary file.
      */
     public static Ayah[] search(final String keyword,
                                 final int surahNumber) throws IOException {
