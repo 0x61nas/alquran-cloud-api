@@ -1,4 +1,4 @@
-package com.anas.alqurancloudapi.quran;
+package com.anas.alqurancloudapi;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
