@@ -88,8 +88,6 @@ public class Example1 {
 ![Example one output](./Screenshots/example_1_out_0.1.2-v1.png)
 
 ```java
-import com.anas.alqurancloudapi.edition.Edition;
-
 public class Example2 {
     public static void main(String[] args) throws IOException {
         Edition[] editions = Edition.getEditions(); // Get all available editions
