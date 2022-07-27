@@ -9,7 +9,7 @@
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=anas-elgarhy_alquran-cloud-api&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=anas-elgarhy_alquran-cloud-api)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=anas-elgarhy_alquran-cloud-api&metric=bugs)](https://sonarcloud.io/summary/new_code?id=anas-elgarhy_alquran-cloud-api)
 
-## It still under development 🚧
+## It is still under development. 🚧
 
 
 ## How to add this library into your project
@@ -61,20 +61,21 @@ allprojects {
 ```
 
 ## Usage
+
 ```java
 public class Example1 {
     public static void main(String[] args) throws IOException {
-        Ayah ayah = QuranAPI.getAyah(1); // Get the first ayah in the quaran in arabic edition
+        Ayah ayah = Ayah.getAyah(1); // Get the first ayah in the quaran in arabic edition
         System.out.println(ayah.getText());
         System.out.println("***");
 
         System.out.println("----- آية عشوائية -----");
-        Ayah randomAyah = QuranAPI.getRandomAyah(); // Get a random ayah in the quaran in arabic edition
+        Ayah randomAyah = Ayah.getRandomAyah(); // Get a random ayah in the quaran in arabic edition
         Surah surah = randomAyah.getSurah(); // Get the surah of the random ayah
         System.out.println(randomAyah.getText() + " - من " + surah.getName());
         System.out.println("***");
 
-        Surah surah2 = QuranAPI.getSurah(1); // Get the first surah in the quaran in arabic edition
+        Surah surah2 = Surah.getSurah(1); // Get the first surah in the quaran in arabic edition
         System.out.println(surah2.getName());
         System.out.println("الآيات: ");
         for (Ayah a : surah2.getAyahs()) {
@@ -87,9 +88,11 @@ public class Example1 {
 ![Example one output](./Screenshots/example_1_out_0.1.2-v1.png)
 
 ```java
+import com.anas.alqurancloudapi.edition.Edition;
+
 public class Example2 {
     public static void main(String[] args) throws IOException {
-        Edition[] editions = QuranAPI.getEditions(); // Get all available editions
+        Edition[] editions = Edition.getEditions(); // Get all available editions
         System.out.println("The number of available editions: " + editions.length);
 
         System.out.println("Editions: ");
@@ -107,16 +110,16 @@ public class Example2 {
 public class Example3 {
     public static void main(String[] args) throws IOException {
         // Get th all available editions in specific language
-        Edition[] editionsInEnglish = QuranAPI.getEditions("en");
+        Edition[] editionsInEnglish = Edition.getEditions("en");
         System.out.println("The number of available editions in English: " + editionsInEnglish.length);
 
 
         // Get th all available editions in specific language and format (audio or text) and type (quran or translation, etc)
         // null means all
-        Edition[] editionsInEnglishAudio = QuranAPI.getEditions(EditionFormat.AUDIO, "en", null);
+        Edition[] editionsInEnglishAudio = Edition.getEditions(EditionFormat.AUDIO, "en", null);
         System.out.println("The number of available editions in English audio: " + editionsInEnglishAudio.length);
 
-        Ayah ayah = QuranAPI.getAyah(1, editionsInEnglishAudio[0]); // Get the first ayah in the quaran in specific edition
+        Ayah ayah = Edition.getAyah(1, editionsInEnglishAudio[0]); // Get the first ayah in the quaran in specific edition
         // Becose the audio editions also have the text editions insiw, and usually the text editions are arabic.
         System.out.println(ayah.getText());
         System.out.println(ayah.getAudioUrl()); // Get the audio url of the ayah in 192 kbps.
@@ -128,15 +131,15 @@ public class Example3 {
         System.out.println(edition.getType());
         System.out.println(edition.getFormat());
 
-        Ayah ayahFromEdition = QuranAPI.getAyah(1, edition); // Get the first ayah in the quaran in specific edition
+        Ayah ayahFromEdition = Ayah.getAyah(1, edition); // Get the first ayah in the quaran in specific edition
         System.out.println(ayahFromEdition.getText());
 
         // Get the first surah in the quaran in specific edition
-        Surah fistSurah = QuranAPI.getSurah(1, edition);
+        Surah fistSurah = Surah.getSurah(1, edition);
         System.out.println(fistSurah.getName());
 
         // Or you can use the Surah enum to get the surah:
-        Surah s = QuranAPI.getSurah(Surahs.AL_ALAQ);
+        Surah s = Surah.getSurah(Surahs.AL_ALAQ);
         System.out.println(s.getName());
     }
 }
