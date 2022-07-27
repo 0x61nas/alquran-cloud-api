@@ -7,6 +7,7 @@ import com.anas.alqurancloudapi.edition.Edition;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -325,6 +326,24 @@ public class Surah implements Mapper {
     public static Surah getRandomSurah() throws IOException {
         return getRandomSurah((Edition) null);
     }
+
+    /**
+     * Search for a keyword in this surah.
+     *
+     * @param keyword The keyword to search for.
+     * @return An array of Ayah containing the keyword.
+     */
+    public Ayah[] search(final String keyword) {
+        final var ayahs = new ArrayList<Ayah>();
+        for (final var ayah : this.getAyahs()) {
+            if (ayah.getText().contains(keyword)) {
+                ayahs.add(ayah);
+            }
+        }
+        return ayahs.toArray(new Ayah[0]);
+    }
+
+    // TODO: 7/27/22 Create a function to get a random ayah from this surah.
 
     @Override
     public String toString() {
