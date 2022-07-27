@@ -118,7 +118,7 @@ public class QuranCollection implements Mapper {
                                          final Edition edition,
                                          final int offset,
                                          final int limit) throws IOException {
-        // Checking if the surah number is valid.
+        // Checking if the juz number is valid.
         if (juzNumber < 1 || juzNumber > 30) {
             throw new IllegalArgumentException("Juz number must be greater than 0 and less than 31");
         }

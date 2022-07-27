@@ -12,7 +12,7 @@ public class Requester {
     private static final int connectTimeout;
 
     static {
-        BASE_URL = "http://api.alquran.cloud/";
+        BASE_URL = "http://api.alquran.cloud/v1/";
         connectTimeout = 10000;
     }
 

@@ -3,7 +3,7 @@ package com.anas.alqurancloudapi.consts;
 import java.util.ArrayList;
 
 public enum Surahs {
-    AL_FATIRAH("سورة الفاتحة", "Al-Fatiha", 7),  // 1 - Surah Al-Fatiha
+    AL_FATIHA("سورة الفاتحة", "Al-Fatiha", 7),  // 1 - Surah Al-Fatiha
     AL_BAQARA("سورة البقرة", "Al-Baqara", 286),  // 2 - Surah Al-Baqara
     AAL_I_IMRAAN("سورة آل عمران", "Aal-i-Imraan", 200),  // 3 - Surah Al-Imraan
     AN_NISAA("سورة النساء", "An-Nisaa", 176),  // 4 - Surah Al-Nisaa

@@ -10,7 +10,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.Arrays;
 import java.util.logging.Logger;
+import java.util.stream.Stream;
 
 /**
  * @author: <a href="https://github.com/anas-elgarhy">Anas Elgarhy</a>
@@ -24,12 +26,12 @@ class AyahTest {
         LOGGER = Logger.getLogger(AyahTest.class.getName());
     }
 
-    public static int[] generateRandomAyahsNumbers() {
+    public static Stream<Integer> generateRandomAyahsNumbers() {
         final var randomNumbers = new int[(int) (Math.random() * 10)];
         for (var i = 0; i < randomNumbers.length; i++) {
             randomNumbers[i] = (int) (Math.random() * Constants.AYAHS_COUNT);
         }
-        return randomNumbers;
+        return Arrays.stream(randomNumbers).boxed();
     }
 
     @ParameterizedTest

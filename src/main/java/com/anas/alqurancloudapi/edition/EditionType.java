@@ -14,7 +14,7 @@ public enum EditionType {
     @JsonProperty("transliteration")
     TRANSLITERATION,
     @JsonProperty("versebyverse")
-    VERSE_BY_VERSE,
+    VERSEBYVERSE,
     @JsonProperty("tafsir")
     TAFSIR,
 }
