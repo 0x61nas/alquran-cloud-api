@@ -218,4 +218,14 @@ class SurahTest {
             LOGGER.info("Result number: " + result.length);
         });
     }
+
+    @RepeatedTest(4)
+    void testGetRandomAyah() {
+        Assertions.assertDoesNotThrow(() -> {
+            final var surah = Surah.getSurah(Surahs.QAAF, "ar.alafasy");
+            final var randomAyah = surah.getRandomAyah();
+            Assertions.assertNotNull(randomAyah);
+            LOGGER.info(randomAyah.getText());
+        });
+    }
 }

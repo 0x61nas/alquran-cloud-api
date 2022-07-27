@@ -333,6 +333,7 @@ public class Surah implements Mapper {
      * @param keyword The keyword to search for.
      * @return An array of Ayah containing the keyword.
      */
+    // TODO: 7/27/22 Ignore the Arabic formation
     public Ayah[] search(final String keyword) {
         final var ayahs = new ArrayList<Ayah>();
         for (final var ayah : this.getAyahs()) {
@@ -343,7 +344,13 @@ public class Surah implements Mapper {
         return ayahs.toArray(new Ayah[0]);
     }
 
-    // TODO: 7/27/22 Create a function to get a random ayah from this surah.
+    /**
+     * Get a random ayah from this surah.
+     * @return random ayah from this surah.
+     */
+    public Ayah getRandomAyah() {
+        return ayahs[(int) (Math.random() * ayahs.length)];
+    }
 
     @Override
     public String toString() {
