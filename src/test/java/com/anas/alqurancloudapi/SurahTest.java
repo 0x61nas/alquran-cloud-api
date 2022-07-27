@@ -220,12 +220,25 @@ class SurahTest {
     }
 
     @RepeatedTest(4)
+    @DisplayName("Test the get random ayah from the surah function")
     void testGetRandomAyah() {
         Assertions.assertDoesNotThrow(() -> {
             final var surah = Surah.getSurah(Surahs.QAAF, "ar.alafasy");
             final var randomAyah = surah.getRandomAyah();
             Assertions.assertNotNull(randomAyah);
             LOGGER.info(randomAyah.getText());
+        });
+    }
+
+    @Test
+    @DisplayName("Test the get specific ayah from the surah function")
+    void testGetAyah() {
+        Assertions.assertDoesNotThrow(() -> {
+            final var surah = Surah.getSurah(Surahs.AL_FATIHA, "ar.alafasy");
+            final var ayah = surah.getAyah(0);
+            Assertions.assertNotNull(ayah);
+            Assertions.assertEquals("﻿بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ", ayah.getText());
+            LOGGER.info(ayah.getText());
         });
     }
 }

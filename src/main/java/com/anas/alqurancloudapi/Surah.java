@@ -352,6 +352,15 @@ public class Surah implements Mapper {
         return ayahs[(int) (Math.random() * ayahs.length)];
     }
 
+    /**
+     * Get ayah at specific index from this surah.
+     * @param index index of the ayah, (ayah number - 1)
+     * @return ayah at specific index from this surah.
+     */
+    public Ayah getAyah(final int index) {
+        return ayahs[index];
+    }
+
     @Override
     public String toString() {
         return "Surah{" + "number=" + number + ", name=" + name + ", englishName=" + englishName
