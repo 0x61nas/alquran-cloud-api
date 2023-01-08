@@ -34,7 +34,7 @@
 <dependency>
 	<groupId>com.github.anas-elgarhy</groupId>
 	<artifactId>alquran-cloud-api</artifactId>
-	<version>0.4.0-v1</version>
+	<version>0.4.1-v1</version>
 </dependency>
 ```
 
@@ -56,7 +56,7 @@ allprojects {
 
 ```gradle
 	dependencies {
-	        implementation 'com.github.anas-elgarhy:alquran-cloud-api:0.4.0-v1'
+	        implementation 'com.github.anas-elgarhy:alquran-cloud-api:0.4.1-v1'
 	}
 ```
 
