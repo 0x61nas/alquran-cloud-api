@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
        - name: mirror in gitlab
-         uses: actions/checkout@v3
+         uses: actions/checkout@v4
          with:
           fetch-depth: 0
        - uses: yesolutions/mirror-action@master
@@ -17,7 +17,7 @@ jobs:
             GIT_PASSWORD: ${{ secrets.GITLAP_TOKEN }}
 
        - name: mirror in bitbucket
-         uses: actions/checkout@v3
+         uses: actions/checkout@v4
          with:
           fetch-depth: 0
        - uses: yesolutions/mirror-action@master
@@ -28,7 +28,7 @@ jobs:
             GIT_PASSWORD: ${{ secrets.BITBUCKET_TOKEN }}
 
        - name: mirror in codeberg
-         uses: actions/checkout@v3
+         uses: actions/checkout@v4
          with:
           fetch-depth: 0
        - uses: yesolutions/mirror-action@master
