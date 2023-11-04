@@ -11,7 +11,7 @@
 
 	<name>alquran-cloud-api</name>
 	<description>A simple java wrapper library for alquran-cloud api</description>
-	<url>https://github.com/anas-elgarhy/alquran-cloud-api</url>
+	<url>https://github.com/0x61nas/alquran-cloud-api</url>
 
 	<distributionManagement>
 		<repository>
@@ -138,7 +138,7 @@
 	</repositories>
 
 	<properties>
-		<repository-owner>anas-elgarhy</repository-owner>
+		<repository-owner>0x61nas</repository-owner>
 		<repository-name>alquran-cloud-api</repository-name>
 		<branch-name>master</branch-name>
 		<github.global.server>github</github.global.server>
