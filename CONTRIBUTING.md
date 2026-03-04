@@ -3,3 +3,5 @@
 - Without the contributions, the project will die
 
 - Feel free to create a pull requst or open an issue 🥰
+
+- Using AI help is allowed, but vibe-codeing is not
