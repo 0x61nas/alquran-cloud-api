@@ -4,6 +4,11 @@
     <remote-repository>
       <option name="id" value="PROJECT-REPO-URL" />
       <option name="name" value="PROJECT-REPO-URL" />
+      <option name="url" value="https://github.com/0x61nas/alquran-cloud-api/master" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="PROJECT-REPO-URL" />
+      <option name="name" value="PROJECT-REPO-URL" />
       <option name="url" value="https://github.com/anas-elgarhy/alquran-cloud-api/master" />
     </remote-repository>
     <remote-repository>
