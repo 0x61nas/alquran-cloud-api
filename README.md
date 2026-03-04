@@ -9,9 +9,6 @@
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=anas-elgarhy_alquran-cloud-api&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=anas-elgarhy_alquran-cloud-api)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=anas-elgarhy_alquran-cloud-api&metric=bugs)](https://sonarcloud.io/summary/new_code?id=anas-elgarhy_alquran-cloud-api)
 
-## It is still under development. 🚧
-
-
 ## How to add this library into your project
 
 ### Maven
