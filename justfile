@@ -32,3 +32,6 @@ pusht: push
     git push --tags disroot
     git push --tags tangled
     git push --tags codefloe
+
+clean:
+    git clean -ffdx
